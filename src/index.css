@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@layer utilities {
+  @keyframes alertBlink {
+    0% {
+      opacity: 1;
+      filter: drop-shadow(0 0 0px red);
+    }
+    50% {
+      opacity: 0.6;
+      filter: drop-shadow(0 0 6px red);
+    }
+    100% {
+      opacity: 1;
+      filter: drop-shadow(0 0 0px red);
+    }
+  }
+
+  .animate-alert {
+    animation: alertBlink 1.8s infinite ease-in-out;
+  }
+}
+
+@layer utilities {
+  .clip-umb {
+    clip-path: polygon(
+      8px 0%, 
+      calc(100% - 8px) 0%, 
+      100% 8px, 
+      100% calc(100% - 8px), 
+      calc(100% - 8px) 100%, 
+      8px 100%, 
+      0% calc(100% - 8px), 
+      0% 8px
+    );
+  }
+}
+
+@keyframes bgFade {
+  0% {
+    filter: brightness(0.15) contrast(1.1);
+  }
+  25% {
+    filter: brightness(0.28) contrast(1.1);
+  }
+  40% {
+    filter: brightness(0.28) contrast(1.1);
+  }
+  60% {
+    filter: brightness(0.45) contrast(1.05);
+  }
+  75% {
+    filter: brightness(0.45) contrast(1.05);
+  }
+  100% {
+    filter: brightness(0.7) contrast(1);
+  }
+}
+
+.animate-bgFade {
+  animation: bgFade 7s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+}
