@@ -234,11 +234,11 @@ export default function LinhaDoTempo() {
         )}
       </div>
 
-      <section className="flex flex-col pt-5 px-8 gap-8">
+      <section className="flex flex-col lg:pt-5 px-4 lg:px-8 lg:gap-8">
         <div className="max-w-[37rem]">
-          <img src={linhaDoTempo} alt="" />
+          <img src={linhaDoTempo} className="w-[15rem] lg:w-[31rem]" />
           <div className="flex items-center gap-3 mb-4">
-            <h2 className="text-red-600 font-semibold text-3xl tracking-wider">
+            <h2 className="text-red-600 font-semibold text-xl lg:text-3xl tracking-wider">
               {jogos[selecionado].titulo.toUpperCase()}
             </h2>
 
@@ -246,7 +246,7 @@ export default function LinhaDoTempo() {
               <span
                 className={`
         flex items-center justify-center
-        px-3 h-8 text-xs tracking-widest font-bold rounded
+        px-3 h-6 lg:h-8 text-xs tracking-widest font-bold rounded
         ${jogos[selecionado].tipo === "Remake"
                     ? "bg-green-600 text-white"
                     : "bg-blue-600 text-white"}
@@ -258,12 +258,12 @@ export default function LinhaDoTempo() {
           </div>
 
 
-          <p className="text-gray-400 leading-relaxed">
+          <p className="hidden lg:block text-gray-400 leading-relaxed">
             {jogos[selecionado].descricao.toUpperCase()}
           </p>
         </div>
 
-        <div className="flex items-center justify-center gap-6 mt-12">
+        <div className="flex items-center justify-center lg:gap-6 lg:mt-12">
           <button onClick={() => {
             anterior();
             playSlideSound();
