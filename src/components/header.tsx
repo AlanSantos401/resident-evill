@@ -66,7 +66,7 @@ export default function Header() {
     <div className="w-full flex justify-between items-center px-2 py-2 lg:px-6 lg:py-4">
 
       <img
-        className="h-14 lg:h-28 object-contain"
+        className="h-12 lg:h-28 object-contain"
         src={logo}
         alt="logo-umbrella"
       />
@@ -83,7 +83,7 @@ export default function Header() {
               playClick();
               navigate(item.rota);
             }}
-            className={`cursor-pointer text-[0.65rem] lg:text-[1rem] transition ${ativoIndex === index ? "text-white" : "hover:text-white"
+            className={`cursor-pointer text-[0.6rem] lg:text-[1rem] transition ${ativoIndex === index ? "text-white" : "hover:text-white"
               }`}
           >
             {item.nome}
@@ -103,19 +103,19 @@ export default function Header() {
 
       <div className="flex items-center gap-4 mb-4">
 
-        <div className="flex h-10 lg:h-12 items-center gap-1 lg:gap-3 border border-gray-700 rounded-xl px-2 lg:px-3">
+        <div className="flex h-8 lg:h-12 items-center gap-1 lg:gap-3 border border-gray-700 rounded-xl px-2 lg:px-3">
           {soundEnabled ? (
             <img
               src={Fone}
               alt="som"
-              className="h-6 cursor-pointer hover:scale-110 transition"
+              className="lg:h-6 cursor-pointer hover:scale-110 transition"
               onClick={() => setSoundEnabled(false)}
             />
           ) : (
             <img
               src={SemSom}
               alt="sem som"
-              className="h-6 cursor-pointer hover:scale-110 transition"
+              className="lg:h-6 cursor-pointer hover:scale-110 transition"
               onClick={() => setSoundEnabled(true)}
             />
           )}
@@ -146,13 +146,13 @@ export default function Header() {
           </div>
 
 
-          <span className="animate-alert text-sm lg:text-lg z-10 mb-1">⚠️</span>
+          <span className="animate-alert text-[8px] lg:text-lg z-10 mb-1">⚠️</span>
 
           <div className="flex flex-col items-center text-[10px] leading-tight z-10">
-            <strong className="lg:text-xs tracking-wider">
+            <strong className="text-[6px] lg:text-xs tracking-wider">
               ACESSO RESTRITO
             </strong>
-            <span className="text-gray-300">
+            <span className="text-[8px] text-gray-300">
               NIVEL 5 CLASSE A
             </span>
           </div>
