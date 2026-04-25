@@ -13,8 +13,17 @@ import resident_evill_8 from "../assets/jogos/resident_evil_8.png";
 import resident_evill_9 from "../assets/jogos/resident_evil_9.png";
 
 import slideSound from "../audio/carrossel.mp3"
+import linhaDoTempo from "../assets/name_linha_do_tempo.png"
 
-import reVideo from "../videos/Resident_Evil.mp4";
+import re0Video from "../videos/Resident_Evil_0.mp4";
+import re1Video from "../videos/Resident_Evil.mp4";
+import re2Video from "../videos/Resident_Evil_2.mp4";
+import reCodVerVideo from "../videos/Resident_Evil_Code_Veronica.mp4";
+import re3Video from "../videos/Resident_Evil_3.mp4";
+import re4Video from "../videos/Resident_Evil_4.mp4";
+import re5Video from "../videos/Resident_Evil_5.mp4";
+import re6Video from "../videos/Resident_Evil_6.mp4";
+import re7Video from "../videos/Resident_Evil_7.mp4";
 import re8Video from "../videos/Resident_Evil_8.mp4";
 import re9Video from "../videos/Resident_Evil_9.mp4";
 
@@ -36,82 +45,93 @@ export default function LinhaDoTempo() {
   const [minTimePassed, setMinTimePassed] = useState(false);
 
   useEffect(() => {
-  if (!videoRef.current) return;
+    if (!videoRef.current) return;
 
-  const video = videoRef.current;
+    const video = videoRef.current;
 
-  if (soundEnabled) {
-    video.muted = false;
-  } else {
-    video.muted = true;
-  }
-}, [soundEnabled]);
+    if (soundEnabled) {
+      video.muted = false;
+    } else {
+      video.muted = true;
+    }
+  }, [soundEnabled]);
 
   const jogos = [
     {
       img: resident_evill_1,
-      video: reVideo,
+      video: re1Video,
       titulo: "Resident Evil",
+      tipo: "Remake",
       descricao: "Sobreviva em uma mansão isolada cheia de mistérios, criaturas mortais e segredos obscuros escondidos nas sombras."
     },
     {
       img: resident_evill_2,
-      video: re9Video,
+      video: re2Video,
       titulo: "Resident Evil 2",
+      tipo: "Remake",
       descricao: "Enfrente o caos em Raccoon City enquanto zumbis dominam as ruas e segredos perigosos surgem a cada passo."
     },
     {
       img: resident_evill_3,
-      video: re9Video,
+      video: re3Video,
       titulo: "Resident Evil 3",
+      tipo: "Remake",
       descricao: "Fuja de uma cidade em colapso enquanto é perseguido por uma ameaça implacável que nunca para de caçar você."
     },
     {
       img: code_veronica,
-      video: re9Video,
+      video: reCodVerVideo,
       titulo: "Resident Evil Code: Veronica",
+      tipo: null,
       descricao: "Explore instalações sombrias em busca da verdade, enfrentando inimigos cruéis e descobrindo segredos da Umbrella Corporation."
     },
     {
       img: resident_evill_0,
-      video: re9Video,
+      video: re0Video,
       titulo: "Resident Evil 0",
+      tipo: "Remaster",
       descricao: "Descubra as origens do terror em um trem abandonado, enfrentando criaturas perigosas e revelações surpreendentes."
     },
     {
       img: resident_evill_4,
-      video: re9Video,
+      video: re4Video,
       titulo: "Resident Evil 4",
+      tipo: "Remake",
       descricao: "Viaje até um vilarejo isolado dominado por uma seita perigosa e enfrente inimigos inteligentes e extremamente agressivos."
     },
     {
       img: resident_evill_5,
-      video: re9Video,
+      video: re5Video,
       titulo: "Resident Evil 5",
+      tipo: "Remaster",
       descricao: "Lute em ambientes hostis na África enquanto enfrenta ameaças biológicas intensas e coopera para sobreviver ao perigo constante."
     },
     {
       img: resident_evill_6,
-      video: re9Video,
+      video: re6Video,
       titulo: "Resident Evil 6",
+      tipo: "Remaster",
       descricao: "Acompanhe múltiplas histórias globais enquanto o mundo enfrenta surtos biológicos devastadores e ameaças em larga escala."
     },
     {
       img: resident_evill_7,
-      video: re9Video,
+      video: re7Video,
       titulo: "Resident Evil 7",
+      tipo: null,
       descricao: "Entre em uma casa aterrorizante e encare uma família perturbadora em uma experiência intensa de horror em primeira pessoa."
     },
     {
       img: resident_evill_8,
       video: re8Video,
       titulo: "Resident Evil Village",
+      tipo: null,
       descricao: "Explore um vilarejo sombrio dominado por criaturas estranhas e líderes poderosos em uma jornada cheia de medo e ação."
     },
     {
       img: resident_evill_9,
       video: re9Video,
       titulo: "Resident Evil Requiem",
+      tipo: null,
       descricao: "Encare novos horrores em um mundo devastado, onde ameaças evoluídas desafiam sua sobrevivência e testam seus limites."
     },
   ];
@@ -199,6 +219,7 @@ export default function LinhaDoTempo() {
           src={jogos[selecionado].video}
           loop
           preload="auto"
+          muted={!soundEnabled}
           onLoadedData={handleVideoLoad}
           className={`w-full h-full object-cover transition-opacity duration-1000 ${videoLoading ? "opacity-0" : "opacity-100"
             }`}
@@ -213,15 +234,29 @@ export default function LinhaDoTempo() {
         )}
       </div>
 
-      <section className="flex flex-col pt-8 px-8 gap-8">
+      <section className="flex flex-col pt-5 px-8 gap-8">
         <div className="max-w-[37rem]">
-          <h1 className="text-4xl font-bold text-gray-200 tracking-widest">
-            LINHA DO TEMPO
-          </h1>
+          <img src={linhaDoTempo} alt="" />
+          <div className="flex items-center gap-3 mb-4">
+            <h2 className="text-red-600 font-semibold text-3xl tracking-wider">
+              {jogos[selecionado].titulo.toUpperCase()}
+            </h2>
 
-          <h2 className="text-red-600 font-semibold text-3xl mb-4 tracking-wider">
-            {jogos[selecionado].titulo.toUpperCase()}
-          </h2>
+            {jogos[selecionado].tipo && (
+              <span
+                className={`
+        flex items-center justify-center
+        px-3 h-8 text-xs tracking-widest font-bold rounded
+        ${jogos[selecionado].tipo === "Remake"
+                    ? "bg-green-600 text-white"
+                    : "bg-blue-600 text-white"}
+      `}
+              >
+                {jogos[selecionado].tipo.toUpperCase()}
+              </span>
+            )}
+          </div>
+
 
           <p className="text-gray-400 leading-relaxed">
             {jogos[selecionado].descricao.toUpperCase()}
