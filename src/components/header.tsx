@@ -63,10 +63,10 @@ export default function Header() {
 
 
   return (
-    <div className="w-full flex justify-between items-center px-2 py-2 lg:px-6 lg:py-4">
+    <div className="w-full flex justify-between items-center px-2 py-3 lg:px-6 lg:py-4">
 
       <img
-        className="h-12 lg:h-28 object-contain"
+        className="h-10 lg:h-28 object-contain"
         src={logo}
         alt="logo-umbrella"
       />
