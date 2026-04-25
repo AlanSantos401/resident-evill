@@ -13,7 +13,10 @@ import resident_evill_8 from "../assets/jogos/resident_evil_8.png";
 import resident_evill_9 from "../assets/jogos/resident_evil_9.png";
 
 import slideSound from "../audio/carrossel.mp3"
-import re9Video from "../videos/resident-9.mp4";
+
+import reVideo from "../videos/Resident_Evil.mp4";
+import re8Video from "../videos/Resident_Evil_8.mp4";
+import re9Video from "../videos/Resident_Evil_9.mp4";
 
 import { useEffect, useRef, useState } from "react";
 import { useAudio } from "../components/audioContext";
@@ -47,7 +50,7 @@ export default function LinhaDoTempo() {
   const jogos = [
     {
       img: resident_evill_1,
-      video: re9Video,
+      video: reVideo,
       titulo: "Resident Evil",
       descricao: "Sobreviva em uma mansão isolada cheia de mistérios, criaturas mortais e segredos obscuros escondidos nas sombras."
     },
@@ -101,7 +104,7 @@ export default function LinhaDoTempo() {
     },
     {
       img: resident_evill_8,
-      video: re9Video,
+      video: re8Video,
       titulo: "Resident Evil Village",
       descricao: "Explore um vilarejo sombrio dominado por criaturas estranhas e líderes poderosos em uma jornada cheia de medo e ação."
     },

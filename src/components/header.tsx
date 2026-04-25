@@ -152,7 +152,7 @@ export default function Header() {
             <strong className="text-[6px] lg:text-xs tracking-wider">
               ACESSO RESTRITO
             </strong>
-            <span className="text-[8px] text-gray-300">
+            <span className="text-[8px] lg:text-xs text-gray-300">
               NIVEL 5 CLASSE A
             </span>
           </div>
