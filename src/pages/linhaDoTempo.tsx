@@ -32,6 +32,7 @@ import { useAudio } from "../components/audioContext";
 
 export default function LinhaDoTempo() {
   const [selecionado, setSelecionado] = useState(0);
+  const [limite, setLimite] = useState(7);
   const [inicio, setInicio] = useState(0);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -136,8 +137,35 @@ export default function LinhaDoTempo() {
     },
   ];
 
-  const limite = 7;
+  
   const visiveis = jogos.slice(inicio, inicio + limite);
+
+ useEffect(() => {
+  function handleResize() {
+    let novoLimite;
+
+    if (window.innerWidth < 1024) {
+      novoLimite = 6;
+    } else {
+      novoLimite = 7;
+    }
+
+    setLimite(novoLimite);
+
+    // 🔥 AJUSTE DO INICIO
+    setInicio((prev) => {
+      if (prev + novoLimite > jogos.length) {
+        return Math.max(0, jogos.length - novoLimite);
+      }
+      return prev;
+    });
+  }
+
+  handleResize();
+  window.addEventListener("resize", handleResize);
+
+  return () => window.removeEventListener("resize", handleResize);
+}, [jogos.length]);
 
   useEffect(() => {
     audioRef.current = new Audio(slideSound);
@@ -263,7 +291,7 @@ export default function LinhaDoTempo() {
           </p>
         </div>
 
-        <div className="flex items-center justify-center gap-2 lg:gap-6 mt-12">
+        <div className="flex items-center justify-center gap-2 lg:gap-6 mt-6 lg:mt-12">
           <button onClick={() => {
             anterior();
             playSlideSound();
