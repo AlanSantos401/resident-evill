@@ -263,7 +263,7 @@ export default function LinhaDoTempo() {
           </p>
         </div>
 
-        <div className="flex items-center justify-center gap-2 lg:gap-6 lg:mt-12">
+        <div className="flex items-center justify-center gap-2 lg:gap-6 mt-12">
           <button onClick={() => {
             anterior();
             playSlideSound();
