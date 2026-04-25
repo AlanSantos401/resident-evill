@@ -151,8 +151,6 @@ export default function LinhaDoTempo() {
     }
 
     setLimite(novoLimite);
-
-    // 🔥 AJUSTE DO INICIO
     setInicio((prev) => {
       if (prev + novoLimite > jogos.length) {
         return Math.max(0, jogos.length - novoLimite);

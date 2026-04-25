@@ -15,7 +15,6 @@ export default function Loader({ onFinish }: { onFinish: () => void }) {
 
   const { soundEnabled } = useAudio();
 
-  // 🎯 Detecta orientação
   useEffect(() => {
     const checkOrientation = () => {
       setIsLandscape(window.innerWidth > window.innerHeight);
@@ -27,7 +26,6 @@ export default function Loader({ onFinish }: { onFinish: () => void }) {
     return () => window.removeEventListener("resize", checkOrientation);
   }, []);
 
-  // 🔊 Audio
   useEffect(() => {
     clickRef.current = new Audio(clickSound);
     if (clickRef.current) clickRef.current.volume = 0.9;
@@ -39,7 +37,6 @@ export default function Loader({ onFinish }: { onFinish: () => void }) {
     clickRef.current.play();
   };
 
-  // ⏳ Loading
   useEffect(() => {
     if (started.current) return;
     started.current = true;
