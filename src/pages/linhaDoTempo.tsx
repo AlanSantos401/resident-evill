@@ -32,6 +32,7 @@ import { useAudio } from "../components/audioContext";
 
 export default function LinhaDoTempo() {
   const [selecionado, setSelecionado] = useState(0);
+  const [firstLoad, setFirstLoad] = useState(true);
   const [limite, setLimite] = useState(7);
   const [inicio, setInicio] = useState(0);
 
@@ -188,14 +189,16 @@ export default function LinhaDoTempo() {
   }, [selecionado]);
 
   useEffect(() => {
+  if (firstLoad) {
     setVideoLoading(true);
     setVideoReady(false);
+  }
 
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    }
-  }, [selecionado]);
+  if (videoRef.current) {
+    videoRef.current.pause();
+    videoRef.current.currentTime = 0;
+  }
+}, [selecionado]);
 
   useEffect(() => {
     if (videoReady && minTimePassed) {
@@ -212,6 +215,10 @@ export default function LinhaDoTempo() {
 
   function handleVideoLoad() {
     setVideoReady(true);
+
+    if(firstLoad) {
+      setFirstLoad(false)
+    }
   }
 
   function proximo() {
@@ -235,13 +242,12 @@ export default function LinhaDoTempo() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="h-screen overflow-hidden">
       <Header />
 
       <div className="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden">
         <video
           ref={videoRef}
-          key={jogos[selecionado].video}
           src={jogos[selecionado].video}
           loop
           preload="auto"
@@ -251,7 +257,7 @@ export default function LinhaDoTempo() {
             }`}
         />
 
-        {videoLoading && (
+        {firstLoad &&  videoLoading && (
           <div className="absolute inset-0 bg-black/90 flex items-center justify-center flex-col gap-4">
             <p className="text-red-600 tracking-widest text-sm animate-pulse">
               LOADING...
