@@ -263,11 +263,11 @@ export default function LinhaDoTempo() {
           </p>
         </div>
 
-        <div className="flex items-center justify-center lg:gap-6 lg:mt-12">
+        <div className="flex items-center justify-center gap-2 lg:gap-6 lg:mt-12">
           <button onClick={() => {
             anterior();
             playSlideSound();
-          }} className="text-white text-8xl hover:text-red-500 cursor-pointer">
+          }} className="text-white text-6xl lg:text-8xl hover:text-red-500 cursor-pointer">
             ‹
           </button>
 
@@ -303,7 +303,7 @@ export default function LinhaDoTempo() {
           <button onClick={() => {
             proximo();
             playSlideSound();
-          }} className="text-white text-8xl hover:text-red-500 cursor-pointer">
+          }} className="text-white text-6xl lg:text-8xl hover:text-red-500 cursor-pointer">
             ›
           </button>
         </div>
