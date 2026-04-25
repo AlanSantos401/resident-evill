@@ -90,7 +90,7 @@ export default function Header() {
           </div>
         ))}
 
-        <div className="absolute -bottom-2 -left-6 w-[calc(100%+3rem)] h-[2px] bg-gray-700 rounded-full"></div>
+        <div className="absolute -bottom-2 -left-4 lg:-left-6 w-[calc(100%+2rem)] lg:w-[calc(100%+3rem)] h-[2px] bg-gray-700 rounded-full"></div>
 
         <div
           className="absolute -bottom-2 h-[2px] bg-red-600 rounded-full transition-all duration-300"
