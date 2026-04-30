@@ -299,7 +299,7 @@ export default function Personagens() {
             {filtrados.map((p) => (
               <div
                 key={p.id}
-                onClick={() => setSelecionado(p)}
+                
                 className="flex flex-col border border-gray-700 cursor-pointer  transition hover:shadow-[0_0_20px_rgba(255,0,0,0.5)]"
               >
                 <img src={p.imagem} className="w-full h-35 object-cover mb-2" />
@@ -311,7 +311,8 @@ export default function Personagens() {
                 </span></h4>
                 <h3 className="mx-4 text-[0.8rem]">ID: {p.id}</h3>
 
-                <button className="m-2 border border-red-600 text-xs py-1 hover:bg-red-600/20 cursor-pointer">
+                <button className="m-2 border border-red-600 text-xs py-1 hover:bg-red-600/20 cursor-pointer"
+                onClick={() => setSelecionado(p)}>
                   ANALISAR
                 </button>
               </div>
