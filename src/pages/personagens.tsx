@@ -3,180 +3,20 @@ import { Search } from "lucide-react"
 import Header from "../components/header"
 import Umbrella from "../assets/icon-umbrella.png"
 
-// IMAGENS (usa as suas)
-import jill from "../assets/personagens/jill.png"
-import leon from "../assets/personagens/leon.png"
-import ada from "../assets/personagens/ada.png"
-import nemesis from "../assets/personagens/nemies.png"
-import wesker from "../assets/personagens/albert.png"
-import chris from "../assets/personagens/chris.png"
-import ethan from "../assets/personagens/chris.png"
-import claire from "../assets/personagens/chris.png"
+import type {
+  Personagem,
+  Status,
+  NivelAmeaca,
+  Tipo
+} from "../types/personagem"
 
-type NivelAmeaca = "BAIXA" | "MÉDIA" | "ALTA" | "EXTREMA"
-
-type Status = "ATIVO" | "CRÍTICO" | "HOSTIL" | "DESCONHECIDO"
-
-type Tipo = "TODOS" | "HUMANOS" | "AGENTES" | "B.O.W" | "INFECTADOS" | "VILÕES"
-
-type Personagem = {
-  id: string
-  nome: string
-  tipo: Tipo
-  status: Status
-  infeccao: number
-  imagem: string
-  forca: number
-  agilidade: number
-  resistencia: number
-  inteligencia: number
-  nivelAmeaca: NivelAmeaca
-  bowIdentificado: boolean
-  altura: string
-  peso: string
-}
+import { personagens } from "../data/personagens"
 
 export default function Personagens() {
   const [busca, setBusca] = useState("")
-  const [filtro, setFiltro] = useState("TODOS")
+  const [filtro, setFiltro] = useState<Tipo>("TODOS")
 
-  const personagens: Personagem[] = [
-    {
-      id: "RE-012-256-652",
-      nome: "Jill Valentine",
-      tipo: "HUMANOS",
-      status: "ATIVO",
-      infeccao: 12,
-      imagem: jill,
-      forca: 80,
-      agilidade: 90,
-      resistencia: 70,
-      inteligencia: 85,
-      nivelAmeaca: "MÉDIA",
-      bowIdentificado: false,
-      altura: "1.66m",
-      peso: "50kg",
-    },
 
-    {
-      id: "RE-021-889-112",
-      nome: "Leon S. Kennedy",
-      tipo: "AGENTES",
-      status: "ATIVO",
-      infeccao: 0,
-      imagem: leon,
-      forca: 75,
-      agilidade: 88,
-      resistencia: 78,
-      inteligencia: 82,
-      nivelAmeaca: "BAIXA",
-      bowIdentificado: false,
-      altura: "1.80m",
-      peso: "70kg",
-    },
-
-    {
-      id: "RE-666-999-000",
-      nome: "Nemesis",
-      tipo: "B.O.W",
-      status: "HOSTIL",
-      infeccao: 100,
-      imagem: nemesis,
-      forca: 100,
-      agilidade: 60,
-      resistencia: 100,
-      inteligencia: 40,
-      nivelAmeaca: "EXTREMA",
-      bowIdentificado: true,
-      altura: "2.20m",
-      peso: "150kg",
-    },
-
-    {
-      id: "RE-999-000-111",
-      nome: "Albert Wesker",
-      tipo: "AGENTES",
-      status: "CRÍTICO",
-      infeccao: 85,
-      imagem: wesker,
-      forca: 95,
-      agilidade: 95,
-      resistencia: 90,
-      inteligencia: 100,
-      nivelAmeaca: "EXTREMA",
-      bowIdentificado: true,
-      altura: "1.83m",
-      peso: "84kg",
-    },
-
-    {
-      id: "RE-555-222-888",
-      nome: "Ada Wong",
-      tipo: "AGENTES",
-      status: "DESCONHECIDO",
-      infeccao: 0,
-      imagem: ada,
-      forca: 70,
-      agilidade: 92,
-      resistencia: 65,
-      inteligencia: 90,
-      nivelAmeaca: "MÉDIA",
-      bowIdentificado: false,
-      altura: "1.70m",
-      peso: "54kg",
-    },
-
-    {
-      id: "RE-333-444-777",
-      nome: "Chris Redfield",
-      tipo: "AGENTES",
-      status: "ATIVO",
-      infeccao: 5,
-      imagem: chris,
-      forca: 98,
-      agilidade: 70,
-      resistencia: 95,
-      inteligencia: 78,
-      nivelAmeaca: "ALTA",
-      bowIdentificado: false,
-      altura: "1.85m",
-      peso: "98kg",
-    },
-
-    {
-      id: "RE-444-888-222",
-      nome: "Claire Redfield",
-      tipo: "HUMANOS",
-      status: "ATIVO",
-      infeccao: 0,
-      imagem: claire,
-      forca: 68,
-      agilidade: 85,
-      resistencia: 72,
-      inteligencia: 80,
-      nivelAmeaca: "MÉDIA",
-      bowIdentificado: false,
-      altura: "1.69m",
-      peso: "55kg",
-    },
-
-    {
-      id: "RE-777-111-999",
-      nome: "Ethan Winters",
-      tipo: "HUMANOS",
-      status: "CRÍTICO",
-      infeccao: 65,
-      imagem: ethan,
-      forca: 72,
-      agilidade: 65,
-      resistencia: 88,
-      inteligencia: 70,
-      nivelAmeaca: "ALTA",
-      bowIdentificado: true,
-      altura: "1.80m",
-      peso: "75kg",
-    }
-  ]
 
   const [selecionado, setSelecionado] = useState<Personagem>(personagens[0])
 
@@ -184,7 +24,8 @@ export default function Personagens() {
     ATIVO: "text-green-500",
     CRÍTICO: "text-red-500",
     HOSTIL: "text-red-600",
-    DESCONHECIDO: "text-gray-400"
+    DESCONHECIDO: "text-gray-400",
+    MUTAÇÃO: "text-purple-500",
   }
 
   const ameacaColor: Record<NivelAmeaca, string> = {
@@ -195,25 +36,34 @@ export default function Personagens() {
   }
 
   const filtrados = personagens.filter((p) => {
-  const matchBusca = p.nome.toLowerCase().includes(busca.toLowerCase())
+    const matchBusca = p.nome.toLowerCase().includes(busca.toLowerCase())
 
-  let matchFiltro = true
+    let matchFiltro = true
 
-  if (filtro === "TODOS") {
-    matchFiltro = true
-  } 
-  else if (filtro === "INFECTADOS") {
-    matchFiltro = p.infeccao > 0
-  } 
-  else if (filtro === "VILÕES") {
-    matchFiltro = p.bowIdentificado === true
-  } 
-  else {
-    matchFiltro = p.tipo === filtro
-  }
+    if (filtro === "TODOS") {
+      matchFiltro = true
+    }
+    else if (filtro === "INFECTADOS") {
+      matchFiltro = p.infeccao > 0
+    }
+    else if (filtro === "VILÕES") {
+      matchFiltro = p.bowIdentificado === true
+    }
+    else {
+      matchFiltro = p.tipo === filtro
+    }
 
-  return matchBusca && matchFiltro
-})
+    return matchBusca && matchFiltro
+  })
+
+  const filtros: Tipo[] = [
+  "TODOS",
+  "HUMANOS",
+  "INFECTADOS",
+  "B.O.W",
+  "AGENTES",
+  "VILÕES",
+]
 
 
   return (
@@ -222,10 +72,7 @@ export default function Personagens() {
 
       <div className="flex flex-1">
 
-        <aside className="w-[300px] border-r p-4">
-
-
-
+        <aside className="lg:w-[300px] border-r p-4">
           <div className="relative w-full mb-4">
             <input
               type="text"
@@ -253,7 +100,7 @@ export default function Personagens() {
 
             <div className=" h-[1px] bg-gray-400 mx-auto my-4"></div>
 
-            {["TODOS", "HUMANOS", "INFECTADOS", "B.O.W", "AGENTES", "VILÕES"].map((item) => (
+            {filtros.map((item) => (
               <div
                 key={item}
                 onClick={() => setFiltro(item)}
@@ -293,13 +140,13 @@ export default function Personagens() {
           </div>
         </aside>
 
-        <section className="flex-1 p-4">
+        <section className="flex-1 p-4 overflow-y-auto h-[calc(100vh-80px)]">
           <div className="grid grid-cols-4 gap-y-4 gap-x-6">
 
             {filtrados.map((p) => (
               <div
                 key={p.id}
-                
+
                 className="flex flex-col border border-gray-700 cursor-pointer  transition hover:shadow-[0_0_20px_rgba(255,0,0,0.5)]"
               >
                 <img src={p.imagem} className="w-full h-35 object-cover mb-2" />
@@ -312,7 +159,7 @@ export default function Personagens() {
                 <h3 className="mx-4 text-[0.8rem]">ID: {p.id}</h3>
 
                 <button className="m-2 border border-red-600 text-xs py-1 hover:bg-red-600/20 cursor-pointer"
-                onClick={() => setSelecionado(p)}>
+                  onClick={() => setSelecionado(p)}>
                   ANALISAR
                 </button>
               </div>
@@ -321,7 +168,7 @@ export default function Personagens() {
           </div>
         </section>
 
-        <aside className="w-[350px] border-l border-red-900 py-3 px-4 h-[calc(100vh-80px)] overflow-hidden ">
+        <aside className="lg:w-[350px] border-l border-red-900 py-3 px-4 h-[calc(100vh-80px)] overflow-hidden ">
 
           <h2 className="text-gray-300 mb-1 text-xl font-bold">SCAN BIOLÓGICO</h2>
 
