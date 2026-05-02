@@ -7,14 +7,14 @@ import type {
   Personagem,
   Status,
   NivelAmeaca,
-  Tipo
+  FiltroCategoria
 } from "../types/personagem"
 
 import { personagens } from "../data/personagens"
 
 export default function Personagens() {
   const [busca, setBusca] = useState("")
-  const [filtro, setFiltro] = useState<Tipo>("TODOS")
+  const [filtro, setFiltro] = useState<FiltroCategoria>("TODOS")
 
 
 
@@ -26,6 +26,7 @@ export default function Personagens() {
     HOSTIL: "text-red-600",
     DESCONHECIDO: "text-gray-400",
     MUTAÇÃO: "text-purple-500",
+    PROTEGIDO: "text-green-800"
   }
 
   const ameacaColor: Record<NivelAmeaca, string> = {
@@ -35,39 +36,36 @@ export default function Personagens() {
     EXTREMA: "text-red-600",
   }
 
-  const filtrados = personagens.filter((p) => {
-    const matchBusca = p.nome.toLowerCase().includes(busca.toLowerCase())
-
-    let matchFiltro = true
-
-    if (filtro === "TODOS") {
-      matchFiltro = true
-    }
-    else if (filtro === "INFECTADOS") {
-      matchFiltro = p.infeccao > 0
-    }
-    else if (filtro === "VILÕES") {
-      matchFiltro = p.bowIdentificado === true
-    }
-    else {
-      matchFiltro = p.tipo === filtro
-    }
-
-    return matchBusca && matchFiltro
-  })
-
-  const filtros: Tipo[] = [
+ const filtros: FiltroCategoria[] = [
   "TODOS",
-  "HUMANOS",
-  "INFECTADOS",
-  "B.O.W",
-  "AGENTES",
+  "PROTAGONISTAS",
+  "ALIADOS",
   "VILÕES",
+  "MONSTROS",
 ]
+
+const mapaCategoria = {
+  PROTAGONISTAS: "PROTAGONISTA",
+  ALIADOS: "ALIADO",
+  VILÕES: "VILAO",
+  MONSTROS: "MONSTRO",
+}
+
+const filtrados = personagens.filter((p) => {
+  const matchBusca = p.nome.toLowerCase().includes(busca.toLowerCase())
+
+  if (filtro === "TODOS") return matchBusca
+
+  const categoria = mapaCategoria[filtro as keyof typeof mapaCategoria]
+
+  return matchBusca && p.categoria === categoria
+})
+
 
 
   return (
-    <div className="flex flex-col h-screen text-white">
+    <div 
+    className="flex flex-col h-screen text-white">
       <Header />
 
       <div className="flex flex-1">

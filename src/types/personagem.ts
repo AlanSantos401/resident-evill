@@ -6,6 +6,7 @@ export type Status =
   | "HOSTIL"
   | "DESCONHECIDO"
   | "MUTAÇÃO"
+  | "PROTEGIDO"
 
 export type Tipo =
   | "TODOS"
@@ -13,13 +14,26 @@ export type Tipo =
   | "AGENTES"
   | "B.O.W"
   | "INFECTADOS"
+  | "MUTANTES"
+
+  export type Categoria =
+  | "PROTAGONISTA"
+  | "ALIADO"
+  | "VILAO"
+  | "MONSTRO"
+
+  export type FiltroCategoria =
+  | "TODOS"
+  | "PROTAGONISTAS"
+  | "ALIADOS"
   | "VILÕES"
-  | "MUTANTE"
+  | "MONSTROS"
 
 export type Personagem = {
   id: string
   nome: string
   tipo: Tipo
+   categoria: Categoria
   status: Status
   infeccao: number
   imagem: string
