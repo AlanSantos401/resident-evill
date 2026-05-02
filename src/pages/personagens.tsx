@@ -21,12 +21,12 @@ export default function Personagens() {
   const [selecionado, setSelecionado] = useState<Personagem>(personagens[0])
 
   const statusColor: Record<Status, string> = {
-    ATIVO: "text-green-500",
-    CRÍTICO: "text-red-500",
+    ATIVO: "text-emerald-400",
+    CRÍTICO: "text-orange-400",
     HOSTIL: "text-red-600",
-    DESCONHECIDO: "text-gray-400",
-    MUTAÇÃO: "text-purple-500",
-    PROTEGIDO: "text-green-800"
+    DESCONHECIDO: "text-zinc-400",
+    MUTAÇÃO: "text-fuchsia-500",
+    PROTEGIDO: "text-sky-400"
   }
 
   const ameacaColor: Record<NivelAmeaca, string> = {
@@ -36,36 +36,49 @@ export default function Personagens() {
     EXTREMA: "text-red-600",
   }
 
- const filtros: FiltroCategoria[] = [
-  "TODOS",
-  "PROTAGONISTAS",
-  "ALIADOS",
-  "VILÕES",
-  "MONSTROS",
-]
+  const filtros: FiltroCategoria[] = [
+    "TODOS",
+    "PROTAGONISTAS",
+    "ALIADOS",
+    "VILÕES",
+    "MONSTROS",
+  ]
 
-const mapaCategoria = {
-  PROTAGONISTAS: "PROTAGONISTA",
-  ALIADOS: "ALIADO",
-  VILÕES: "VILAO",
-  MONSTROS: "MONSTRO",
-}
+  const mapaCategoria = {
+    PROTAGONISTAS: "PROTAGONISTA",
+    ALIADOS: "ALIADO",
+    VILÕES: "VILAO",
+    MONSTROS: "MONSTRO",
+  }
 
-const filtrados = personagens.filter((p) => {
-  const matchBusca = p.nome.toLowerCase().includes(busca.toLowerCase())
+  const filtrados = personagens.filter((p) => {
+    const matchBusca = p.nome.toLowerCase().includes(busca.toLowerCase())
 
-  if (filtro === "TODOS") return matchBusca
+    if (filtro === "TODOS") return matchBusca
 
-  const categoria = mapaCategoria[filtro as keyof typeof mapaCategoria]
+    const categoria = mapaCategoria[filtro as keyof typeof mapaCategoria]
 
-  return matchBusca && p.categoria === categoria
-})
+    return matchBusca && p.categoria === categoria
+  })
 
-
+  const jogoColors: Record<string, string> = {
+    "3+": "border-gray-500 text-gray-300 bg-gray-800/30",
+    "RE0": "border-gray-500 text-gray-300 bg-gray-800/30",
+    "RE1": "border-green-600 text-green-400 bg-green-900/20",
+    "RE2": "border-blue-600 text-blue-400 bg-blue-900/20",
+    "RE3": "border-red-700 text-red-400 bg-red-900/20",
+    "RE4": "border-yellow-600 text-yellow-400 bg-yellow-900/20",
+    "RE5": "border-orange-600 text-orange-400 bg-orange-900/20",
+    "RE6": "border-purple-600 text-purple-400 bg-purple-900/20",
+    "RE7": "border-lime-600 text-lime-400 bg-lime-900/20",
+    "RE8": "border-pink-600 text-pink-400 bg-pink-900/20",
+    "RE9": "border-cyan-600 text-cyan-400 bg-cyan-900/20",
+    "CODE VERONICA": "border-indigo-600 text-indigo-400 bg-indigo-900/20",
+  }
 
   return (
-    <div 
-    className="flex flex-col h-screen text-white">
+    <div
+      className="flex flex-col h-screen text-white">
       <Header />
 
       <div className="flex flex-1">
@@ -151,9 +164,12 @@ const filtrados = personagens.filter((p) => {
 
                 <h3 className=" mx-4 text-[1rem]">{p.nome}</h3>
 
-                <h4 className="mx-4 flex text-[0.8rem] justify-between ">STATUS: <span >
-                  {p.status}
-                </span></h4>
+                <h4 className="mx-4 flex text-[0.8rem] justify-between ">
+                  STATUS:
+                  <span className={statusColor[p.status]}>
+                    {p.status}
+                  </span>
+                </h4>
                 <h3 className="mx-4 text-[0.8rem]">ID: {p.id}</h3>
 
                 <button className="m-2 border border-red-600 text-xs py-1 hover:bg-red-600/20 cursor-pointer"
@@ -176,20 +192,38 @@ const filtrados = personagens.filter((p) => {
               className="w-full h-37 object-cover"
             />
           </div>
+          <div className="flex justify-between border-b border-red-900">
+            <div>
+              <h2 className="text-xl ">
+                {selecionado.nome.toUpperCase()}
+              </h2>
 
-          <h2 className="text-xl ">
-            {selecionado.nome.toUpperCase()}
-          </h2>
-
-          <p className="text-base text-gray-400 border-b border-red-900 pb-1 mb-1">
-            ID: {selecionado.id}
-          </p>
+              <p className="flex justify-between text-base text-gray-400  pb-1 mb-1">
+                ID: {selecionado.id}
+              </p>
+            </div>
+            <div className="flex flex-wrap p-1 gap-1 items-end">
+              {selecionado.jogos?.map((jogo) => (
+                <span
+                  key={jogo}
+                  className={`
+        px-1 py-[2px] text-[10px] border tracking-wider
+        ${jogoColors[jogo]}
+      `}
+                >
+                  {jogo}
+                </span>
+              ))}
+            </div>
+          </div>
 
           <div className="text-[14px] space-y-1 mt-4 ">
 
             <div className="flex justify-between border-b border-gray-800">
               <span>Status:</span>
-              <span className="text-green-500">{selecionado.status}</span>
+              <span className={statusColor[selecionado.status]}>
+                {selecionado.status}
+              </span>
             </div>
 
             <div className="flex justify-between border-b border-gray-800">

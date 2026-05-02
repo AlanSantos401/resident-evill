@@ -52,6 +52,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: false,
     altura: "1.66m",
     peso: "50kg",
+    jogos: ["RE1", "RE3", "RE5"]
   },
   {
     id: "RE-021-889-112",
@@ -69,6 +70,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: false,
     altura: "1.80m",
     peso: "70kg",
+    jogos: ["RE2", "RE4", "RE6", "RE9"]
   },
   {
     id: "RE-333-444-777",
@@ -86,6 +88,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: false,
     altura: "1.85m",
     peso: "98kg",
+    jogos: ["RE1", "RE5", "RE6", "3+"]
   },
   {
     id: "RE-444-888-222",
@@ -103,6 +106,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: false,
     altura: "1.69m",
     peso: "55kg",
+    jogos: ["RE2", "CODE VERONICA"]
   },
   {
     id: "RE-555-222-888",
@@ -120,6 +124,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: false,
     altura: "1.70m",
     peso: "54kg",
+    jogos: ["RE2", "RE4", "RE6"]
   },
   {
     id: "RE-015-667-145",
@@ -137,6 +142,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "1.80m",
     peso: "65kg",
+    jogos: ["RE8"]
   },
   {
     id: "RE-PROT-007",
@@ -154,6 +160,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: false,
     altura: "1.67m",
     peso: "52kg",
+    jogos: ["RE4"]
   },
   {
     id: "RE-777-111-999",
@@ -171,6 +178,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "1.80m",
     peso: "75kg",
+    jogos: ["RE7", "RE8"]
   },
   {
     id: "RE-999-000-111",
@@ -188,6 +196,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "1.83m",
     peso: "84kg",
+    jogos: ["RE1", "CODE VERONICA", "RE5"]
   },
   {
     id: "RE-000-777-444",
@@ -205,6 +214,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "1.78m",
     peso: "72kg",
+    jogos: ["RE5", "RE9"]
   },
   {
     id: "RE-VIL-003",
@@ -222,6 +232,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "1.75m",
     peso: "58kg",
+    jogos: ["CODE VERONICA"]
   },
   {
     id: "RE-VIL-008",
@@ -239,6 +250,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "1.30m",
     peso: "30kg",
+    jogos: ["RE7"]
   },
   {
     id: "RE-VIL-009",
@@ -256,6 +268,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "1.72m",
     peso: "56kg",
+    jogos: ["RE6"]
   },
   {
     id: "RE-VIL-007",
@@ -273,6 +286,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "1.82m",
     peso: "85kg",
+    jogos: ["RE6"]
   },
   {
     id: "RE-016-554-321",
@@ -290,6 +304,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "2.40m",
     peso: "210kg",
+    jogos: ["RE2"]
   },
   {
     id: "RE-013-879-221",
@@ -307,6 +322,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "2.30m",
     peso: "180kg",
+    jogos: ["RE4"]
   },
   {
     id: "RE-666-999-000",
@@ -324,6 +340,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "2.20m",
     peso: "150kg",
+    jogos: ["RE3"]
   },
   {
     id: "RE-888-333-555",
@@ -341,6 +358,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "2.20m",
     peso: "180kg",
+    jogos: ["RE2"]
   },
   {
     id: "RE-020-000-003",
@@ -358,6 +376,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "2.90m",
     peso: "220kg",
+    jogos: ["RE8"]
   },
   {
     id: "RE-111-555-333",
@@ -375,6 +394,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "2.40m",
     peso: "190kg",
+    jogos: ["RE1"]
   },
   {
     id: "RE-014-332-908",
@@ -392,6 +412,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "2.80m",
     peso: "220kg",
+    jogos: ["RE4"]
   },
   {
     id: "RE-SUP-001",
@@ -409,6 +430,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: false,
     altura: "1.60m",
     peso: "48kg",
+    jogos: ["RE0", "RE1"]
   },
   {
     id: "RE-SUP-002",
@@ -426,6 +448,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: false,
     altura: "1.86m",
     peso: "89kg",
+    jogos: ["RE1", "RE3", "RE0"]
   },
   {
     id: "RE-SUP-003",
@@ -443,6 +466,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: false,
     altura: "1.82m",
     peso: "83kg",
+    jogos: ["RE3"]
   },
   {
     id: "RE-SUP-004",
@@ -460,6 +484,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: false,
     altura: "1.65m",
     peso: "52kg",
+    jogos: ["RE5"]
   },
   {
     id: "RE-020-000-001",
@@ -477,6 +502,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "1.85m",
     peso: "82kg",
+    jogos: ["RE9"]
   },
   {
     id: "RE-020-000-002",
@@ -494,6 +520,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "2.30m",
     peso: "180kg",
+    jogos: ["RE9"]
   },
   {
     id: "RE-SUP-005",
@@ -511,6 +538,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: false,
     altura: "1.75m",
     peso: "60kg",
+    jogos: ["RE6"]
   },
   {
     id: "RE-VIL-010",
@@ -528,6 +556,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "2.10m",
     peso: "120kg",
+    jogos: ["RE4"]
   },
   {
     id: "RE-017-778-902",
@@ -545,6 +574,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "1.89m",
     peso: "82kg",
+    jogos: ["RE4"]
   },
   {
     id: "RE-018-119-443",
@@ -562,6 +592,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "1.45m",
     peso: "35kg",
+    jogos: ["RE4"]
   },
   {
     id: "RE-019-884-210",
@@ -579,5 +610,6 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "1.88m",
     peso: "95kg",
+    jogos: ["RE7"]
   }
 ]

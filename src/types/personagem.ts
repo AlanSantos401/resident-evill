@@ -45,4 +45,5 @@ export type Personagem = {
   bowIdentificado: boolean
   altura: string
   peso: string
+  jogos: string[]
 }
