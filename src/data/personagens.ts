@@ -17,9 +17,15 @@ import sheva from "../assets/personagens/sheva.png"
 import helena from "../assets/personagens/helena.png"
 import carlos from "../assets/personagens/carlos.png"
 import barry from "../assets/personagens/barry.png"
+import rosemary from "../assets/personagens/rosemary.png"
+import billy from "../assets/personagens/billy.png"
 
 import verdugo from "../assets/personagens/verdugo.png"
 import u3 from "../assets/personagens/u3.png"
+import piers from "../assets/personagens/piers.png"
+import sherry from "../assets/personagens/sherry.png"
+import mia from "../assets/personagens/mia.png"
+import jake from "../assets/personagens/jake.png"
 import maeMiranda from "../assets/personagens/mae-miranda.png"
 import birkin from "../assets/personagens/birkin.png"
 import saddler from "../assets/personagens/saddler.png"
@@ -127,6 +133,78 @@ export const personagens: Personagem[] = [
     jogos: ["RE2", "RE4", "RE6"]
   },
   {
+    id: "RE-777-321-909",
+    nome: "Mia Winters",
+    tipo: "HUMANOS",
+    categoria: "PROTAGONISTA",
+    status: "ATIVO",
+    infeccao: 35,
+    imagem: mia,
+    forca: 55,
+    agilidade: 60,
+    resistencia: 78,
+    inteligencia: 82,
+    nivelAmeaca: "MÉDIA",
+    bowIdentificado: false,
+    altura: "1.65m",
+    peso: "54kg",
+    jogos: ["RE7", "RE VILLAGE"]
+  },
+  {
+    id: "RE-888-555-333",
+    nome: "Jake Muller",
+    tipo: "HUMANOS",
+    categoria: "ALIADO",
+    status: "ATIVO",
+    infeccao: 0,
+    imagem: jake,
+    forca: 88,
+    agilidade: 86,
+    resistencia: 90,
+    inteligencia: 75,
+    nivelAmeaca: "ALTA",
+    bowIdentificado: false,
+    altura: "1.90m",
+    peso: "85kg",
+    jogos: ["RE6"]
+  },
+  {
+    id: "RE-222-999-111",
+    nome: "Sherry Birkin",
+    tipo: "HUMANOS",
+    categoria: "ALIADO",
+    status: "ATIVO",
+    infeccao: 20,
+    imagem: sherry,
+    forca: 62,
+    agilidade: 80,
+    resistencia: 85,
+    inteligencia: 78,
+    nivelAmeaca: "MÉDIA",
+    bowIdentificado: false,
+    altura: "1.70m",
+    peso: "56kg",
+    jogos: ["RE2", "RE6"]
+  },
+  {
+    id: "RE-555-444-777",
+    nome: "Piers Nivans",
+    tipo: "HUMANOS",
+    categoria: "ALIADO",
+    status: "DESCONHECIDO",
+    infeccao: 70,
+    imagem: piers,
+    forca: 82,
+    agilidade: 78,
+    resistencia: 88,
+    inteligencia: 84,
+    nivelAmeaca: "ALTA",
+    bowIdentificado: true,
+    altura: "1.80m",
+    peso: "79kg",
+    jogos: ["RE6"]
+  },
+  {
     id: "RE-015-667-145",
     nome: "Mãe Miranda",
     tipo: "MUTANTES",
@@ -142,7 +220,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "1.80m",
     peso: "65kg",
-    jogos: ["RE8"]
+    jogos: ["RE VILLAGE"]
   },
   {
     id: "RE-PROT-007",
@@ -163,6 +241,24 @@ export const personagens: Personagem[] = [
     jogos: ["RE4"]
   },
   {
+    id: "RE-016-882-300",
+    nome: "Rosemary Winters",
+    tipo: "MUTANTES",
+    categoria: "PROTAGONISTA",
+    status: "ATIVO",
+    infeccao: 100,
+    imagem: rosemary,
+    forca: 75,
+    agilidade: 85,
+    resistencia: 95,
+    inteligencia: 90,
+    nivelAmeaca: "ALTA",
+    bowIdentificado: true,
+    altura: "1.68m",
+    peso: "52kg",
+    jogos: ["RE VILLAGE"]
+  },
+  {
     id: "RE-777-111-999",
     nome: "Ethan Winters",
     tipo: "MUTANTES",
@@ -178,7 +274,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "1.80m",
     peso: "75kg",
-    jogos: ["RE7", "RE8"]
+    jogos: ["RE7", "RE VILLAGE"]
   },
   {
     id: "RE-999-000-111",
@@ -376,7 +472,7 @@ export const personagens: Personagem[] = [
     bowIdentificado: true,
     altura: "2.90m",
     peso: "220kg",
-    jogos: ["RE8"]
+    jogos: ["RE VILLAGE"]
   },
   {
     id: "RE-111-555-333",
@@ -503,6 +599,24 @@ export const personagens: Personagem[] = [
     altura: "1.85m",
     peso: "82kg",
     jogos: ["RE9"]
+  },
+  {
+    id: "RE-017-334-221",
+    nome: "Billy Coen",
+    tipo: "HUMANOS",
+    categoria: "ALIADO",
+    status: "DESCONHECIDO",
+    infeccao: 0,
+    imagem: billy,
+    forca: 90,
+    agilidade: 78,
+    resistencia: 88,
+    inteligencia: 70,
+    nivelAmeaca: "MÉDIA",
+    bowIdentificado: false,
+    altura: "1.81m",
+    peso: "80kg",
+    jogos: ["RE 0"]
   },
   {
     id: "RE-020-000-002",

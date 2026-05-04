@@ -83,7 +83,7 @@ export default function Personagens() {
 
       <div className="flex flex-1">
 
-        <aside className="lg:w-[300px] border-r p-4">
+        <aside className="w-[250px] lg:w-[300px] border-r p-4">
           <div className="relative w-full mb-4">
             <input
               type="text"
@@ -152,7 +152,7 @@ export default function Personagens() {
         </aside>
 
         <section className="flex-1 p-4 overflow-y-auto h-[calc(100vh-80px)]">
-          <div className="grid grid-cols-4 gap-y-4 gap-x-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-4 gap-x-4 lg:gap-x-6">
 
             {filtrados.map((p) => (
               <div
@@ -160,17 +160,17 @@ export default function Personagens() {
 
                 className="flex flex-col border border-gray-700 cursor-pointer  transition hover:shadow-[0_0_20px_rgba(255,0,0,0.5)]"
               >
-                <img src={p.imagem} className="w-full h-35 object-cover mb-2" />
+                <img src={p.imagem} className="w-full h-30 lg:h-35 object-cover mb-1" />
 
-                <h3 className=" mx-4 text-[1rem]">{p.nome}</h3>
+                <h3 className=" mx-2 lg:mx-4 text-[1rem]">{p.nome}</h3>
 
-                <h4 className="mx-4 flex text-[0.8rem] justify-between ">
+                <h4 className="mx-2 lg:mx-4 flex text-[0.8rem] justify-between ">
                   STATUS:
                   <span className={statusColor[p.status]}>
                     {p.status}
                   </span>
                 </h4>
-                <h3 className="mx-4 text-[0.8rem]">ID: {p.id}</h3>
+                <h3 className="mx-2 lg:mx-4 text-[0.8rem]">ID: {p.id}</h3>
 
                 <button className="m-2 border border-red-600 text-xs py-1 hover:bg-red-600/20 cursor-pointer"
                   onClick={() => setSelecionado(p)}>
@@ -182,7 +182,7 @@ export default function Personagens() {
           </div>
         </section>
 
-        <aside className="lg:w-[350px] border-l border-red-900 py-3 px-4 h-[calc(100vh-80px)] overflow-hidden ">
+        <aside className="w-[250px] lg:w-[350px] border-l border-red-900 py-3 px-4 h-[calc(100vh-80px)] overflow-hidden ">
 
           <h2 className="text-gray-300 mb-1 text-xl font-bold">SCAN BIOLÓGICO</h2>
 
