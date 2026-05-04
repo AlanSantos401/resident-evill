@@ -78,7 +78,7 @@ export default function Personagens() {
 
   return (
     <div
-      className="flex flex-col h-screen text-white">
+      className="flex flex-col lg:h-screen text-white">
       <Header />
 
       <div className="flex flex-1">
@@ -99,17 +99,17 @@ export default function Personagens() {
             />
           </div>
 
-          <div className="flex items-center text-center gap-1 mb-4 text-gray-300">
+          <div className="hidden lg:flex items-center text-center gap-1 mb-4 text-gray-300">
             <img src={Umbrella} className="w-12" />
-            <h2 className="text-xl font-semibold">BANCO DE DADOS</h2>
+            <h2 className="text-base lg:text-xl font-semibold">BANCO DE DADOS</h2>
           </div>
 
           <div className="border border-white p-2 text-gray-300">
-            <h2 className=" mb-2 flex justify-between items-center text-xl font-semibold">
-              CLASSIFICAÇÃO <span className="text-red-700 text-xl">{">"}</span>
+            <h2 className=" hidden lg:flex lg:mb-2  justify-between items-center text-base lg:text-xl font-semibold">
+              CLASSIFICAÇÃO <span className="text-red-700 text-base lg:text-xl">{">"}</span>
             </h2>
 
-            <div className=" h-[1px] bg-gray-400 mx-auto my-4"></div>
+            <div className="hidden lg:flex h-[1px] bg-gray-400 mx-auto my-1 lg:my-4"></div>
 
             {filtros.map((item) => (
               <div
@@ -128,7 +128,7 @@ export default function Personagens() {
             ))}
           </div>
 
-          <div className="mt-6 text-sm px-1 text-gray-300">
+          <div className="hidden lg:flex mt-6 text-sm px-1 text-gray-300">
             <h2 className=" mb-2 flex justify-between items-center text-[1.1rem] font-semibold">
               DADOS DO PERSONAGEM <span className="text-red-700 text-xl font-bold">{">"}</span>
             </h2>
@@ -184,25 +184,25 @@ export default function Personagens() {
 
         <aside className="w-[250px] lg:w-[350px] border-l border-red-900 py-3 px-4 h-[calc(100vh-80px)] overflow-hidden ">
 
-          <h2 className="text-gray-300 mb-1 text-xl font-bold">SCAN BIOLÓGICO</h2>
+          <h2 className="text-gray-300 mb-1 text-base lg:text-xl font-bold">SCAN BIOLÓGICO</h2>
 
           <div className="mb-2 ">
             <img
               src={selecionado.imagem}
-              className="w-full h-37 object-cover"
+              className="w-full h-31 g:h-37 object-cover"
             />
           </div>
-          <div className="flex justify-between border-b border-red-900">
-            <div>
+          <div className="flex flex-col lg:justify-between border-b border-red-900">
+            <div className="">
               <h2 className="text-xl ">
                 {selecionado.nome.toUpperCase()}
               </h2>
 
-              <p className="flex justify-between text-base text-gray-400  pb-1 mb-1">
+              <p className="hidden lg:flex justify-between text-base text-gray-400  pb-1 mb-1">
                 ID: {selecionado.id}
               </p>
             </div>
-            <div className="flex flex-wrap p-1 gap-1 items-end">
+            <div className="flex justify-end mt-1 mb-1 lg:flex-wrap p-1 gap-1 items-end">
               {selecionado.jogos?.map((jogo) => (
                 <span
                   key={jogo}
@@ -217,7 +217,7 @@ export default function Personagens() {
             </div>
           </div>
 
-          <div className="text-[14px] space-y-1 mt-4 ">
+          <div className="hidden lg:flex text-[14px] space-y-1 mt-4 ">
 
             <div className="flex justify-between border-b border-gray-800">
               <span>Status:</span>
@@ -247,7 +247,7 @@ export default function Personagens() {
 
           </div>
 
-          <div className="mt-2 space-y-2">
+          <div className="hidden lg:flex mt-2 space-y-2">
 
             {[
               { label: "FORÇA", value: selecionado.forca, color: "bg-green-500" },
@@ -284,7 +284,7 @@ export default function Personagens() {
             ))}
 
           </div>
-          <button className="w-full m-2 border border-red-600 text-base py-1 hover:bg-red-600/20 cursor-pointer">
+          <button className="hidden lg:flex w-full m-2 border border-red-600 text-base py-1 hover:bg-red-600/20 cursor-pointer">
             ABRIR DOSSIÊ ▶
           </button>
 
