@@ -83,7 +83,7 @@ export default function Personagens() {
 
       <div className="flex flex-1">
 
-        <aside className="w-[250px] lg:w-[300px] border-r p-4">
+        <aside className="w-[220px] lg:w-[300px] border-r p-4">
           <div className="relative w-full mb-4">
             <input
               type="text"
@@ -182,7 +182,7 @@ export default function Personagens() {
           </div>
         </section>
 
-        <aside className="w-[250px] lg:w-[350px] border-l border-red-900 py-3 px-4 h-[calc(100vh-80px)] overflow-hidden ">
+        <aside className="w-[230px] lg:w-[350px] border-l border-red-900 py-3 px-4 h-[calc(100vh-80px)] overflow-hidden ">
 
           <h2 className="text-gray-300 mb-1 text-base lg:text-xl font-bold">SCAN BIOLÓGICO</h2>
 
