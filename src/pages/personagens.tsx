@@ -151,7 +151,7 @@ export default function Personagens() {
           </div>
         </aside>
 
-        <section className="flex-1 p-4 overflow-y-auto h-[calc(100vh-80px)]">
+        <section className="flex-1 p-4 lg:overflow-y-auto h-[calc(100vh-80px)]">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-4 gap-x-3 lg:gap-x-6">
 
             {filtrados.map((p) => (
