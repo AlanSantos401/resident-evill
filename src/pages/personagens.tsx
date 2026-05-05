@@ -99,7 +99,7 @@ export default function Personagens() {
             />
           </div>
 
-          <div className="hidden lg:flex items-center text-center gap-1 mb-4 text-gray-300">
+          <div className="hidden lg:flex  items-center text-center gap-1 mb-4 text-gray-300">
             <img src={Umbrella} className="w-12" />
             <h2 className="text-base lg:text-xl font-semibold">BANCO DE DADOS</h2>
           </div>
@@ -128,7 +128,7 @@ export default function Personagens() {
             ))}
           </div>
 
-          <div className="hidden lg:flex mt-6 text-sm px-1 text-gray-300">
+          <div className="hidden lg:flex flex-col mt-6 text-sm px-1 text-gray-300">
             <h2 className=" mb-2 flex justify-between items-center text-[1.1rem] font-semibold">
               DADOS DO PERSONAGEM <span className="text-red-700 text-xl font-bold">{">"}</span>
             </h2>
@@ -152,7 +152,7 @@ export default function Personagens() {
         </aside>
 
         <section className="flex-1 p-4 lg:overflow-y-auto h-[calc(100vh-80px)]">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-4 gap-x-3 lg:gap-x-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-5 gap-x-3 lg:gap-x-6">
 
             {filtrados.map((p) => (
               <div
@@ -198,7 +198,7 @@ export default function Personagens() {
                 {selecionado.nome.toUpperCase()}
               </h2>
 
-              <p className="hidden lg:flex justify-between text-base text-gray-400  pb-1 mb-1">
+              <p className="hidden lg:flex flex-col justify-between text-base text-gray-400  pb-1 mb-1">
                 ID: {selecionado.id}
               </p>
             </div>
@@ -217,7 +217,7 @@ export default function Personagens() {
             </div>
           </div>
 
-          <div className="hidden lg:flex text-[14px] space-y-1 mt-4 ">
+          <div className="hidden lg:flex flex-col text-[14px] space-y-1 mt-2 ">
 
             <div className="flex justify-between border-b border-gray-800">
               <span>Status:</span>
@@ -247,7 +247,7 @@ export default function Personagens() {
 
           </div>
 
-          <div className="hidden lg:flex mt-2 space-y-2">
+          <div className="hidden lg:flex flex-col mt-2 space-y-2">
 
             {[
               { label: "FORÇA", value: selecionado.forca, color: "bg-green-500" },
@@ -284,7 +284,7 @@ export default function Personagens() {
             ))}
 
           </div>
-          <button className="hidden lg:flex w-full m-2 border border-red-600 text-base py-1 hover:bg-red-600/20 cursor-pointer">
+          <button className="hidden lg:flex flex-col w-full m-2 border border-red-600 text-base py-1 hover:bg-red-600/20 cursor-pointer">
             ABRIR DOSSIÊ ▶
           </button>
 

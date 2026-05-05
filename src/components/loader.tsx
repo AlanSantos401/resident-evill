@@ -81,7 +81,7 @@ export default function Loader({ onFinish }: { onFinish: () => void }) {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-black text-white z-50">
         <div className="flex flex-col text-center gap-3">
-          <div className="flex items-center justify-center gap-2">
+          <div className="flex items-center justify-center gap-6">
             <img
             className="w-10 tracking-widest animate-pulse"
             src={umbrella}
