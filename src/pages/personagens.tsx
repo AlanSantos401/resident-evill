@@ -152,7 +152,7 @@ export default function Personagens() {
         </aside>
 
         <section className="flex-1 p-4 overflow-y-auto h-[calc(100vh-80px)]">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-4 gap-x-4 lg:gap-x-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-4 gap-x-3 lg:gap-x-6">
 
             {filtrados.map((p) => (
               <div
@@ -182,7 +182,7 @@ export default function Personagens() {
           </div>
         </section>
 
-        <aside className="w-[230px] lg:w-[350px] border-l border-red-900 py-3 px-4 h-[calc(100vh-80px)] overflow-hidden ">
+        <aside className="w-[220px] lg:w-[350px] border-l border-red-900 py-3 px-4 h-[calc(100vh-80px)] overflow-hidden ">
 
           <h2 className="text-gray-300 mb-1 text-base lg:text-xl font-bold">SCAN BIOLÓGICO</h2>
 
