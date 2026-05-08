@@ -7,6 +7,7 @@ export type Status =
   | "DESCONHECIDO"
   | "MUTAÇÃO"
   | "PROTEGIDO"
+  | "MORTO"
 
 export type Tipo =
   | "TODOS"

@@ -1,6 +1,8 @@
 import type { Personagem } from "../types/personagem"
 
 import jill from "../assets/personagens/jill.png"
+import grace from "../assets/personagens/grace.png"
+import alyssa from "../assets/personagens/alyssa.png"
 import leon from "../assets/personagens/leon.png"
 import ada from "../assets/personagens/ada.png"
 import nemesis from "../assets/personagens/nemies.png"
@@ -26,6 +28,7 @@ import piers from "../assets/personagens/piers.png"
 import sherry from "../assets/personagens/sherry.png"
 import mia from "../assets/personagens/mia.png"
 import jake from "../assets/personagens/jake.png"
+import jack from "../assets/personagens/jack.png"
 import maeMiranda from "../assets/personagens/mae-miranda.png"
 import birkin from "../assets/personagens/birkin.png"
 import saddler from "../assets/personagens/saddler.png"
@@ -35,9 +38,9 @@ import dimitrescus from "../assets/personagens/dimitrescus.png"
 import carla from "../assets/personagens/carla.png"
 import alexia from "../assets/personagens/alexia.png"
 import eveline from "../assets/personagens/eveline.png"
-import clone from "../assets/personagens/clone.png"
+import zeno from "../assets/personagens/zeno.png"
 import simmons from "../assets/personagens/derek.png"
-import drVictor from "../assets/personagens/dr.png"
+import drVictor from "../assets/personagens/victor.png"
 import mendez from "../assets/personagens/bitores.png"
 
 export const personagens: Personagem[] = [
@@ -326,6 +329,126 @@ export const personagens: Personagem[] = [
         evento: "Confronta Ethan Winters em busca do renascimento de sua filha Eva."
       }
     ]
+  },
+  {
+  id: "RE-077-541-309",
+  nome: "Grace Ashcroft",
+  tipo: "HUMANOS",
+  categoria: "PROTAGONISTA",
+  status: "ATIVO",
+  infeccao: 0,
+  imagem: grace,
+  forca: 62,
+  agilidade: 84,
+  resistencia: 70,
+  inteligencia: 91,
+  nivelAmeaca: "MÉDIA",
+  bowIdentificado: false,
+  altura: "1.69m",
+  peso: "57kg",
+  anoNascimento: 2002,
+  nacionalidade: "Americana",
+  primeiraAparicao: "Resident Evil Requiem",
+  jogos: ["Resident Evil Requiem"],
+  biografia:
+    "Jovem sobrevivente envolvida em uma investigação biológica clandestina ligada a remanescentes da Umbrella Corporation. Inteligente e extremamente observadora, Grace utiliza furtividade e raciocínio rápido para sobreviver em ambientes contaminados e enfrentar ameaças B.O.W.",
+  linhaDoTempo: [
+    
+    {
+      ano: 2026,
+      jogo: "Resident Evil Requiem",
+      evento: "Sobrevive a um surto biológico em uma instalação subterrânea abandonada."
+    },
+   
+  ]
+  },
+  {
+  id: "RE-044-210-771",
+  nome: "Alyssa Ashcroft",
+  tipo: "HUMANOS",
+  categoria: "ALIADO",
+  status: "ATIVO",
+  infeccao: 0,
+  imagem: alyssa,
+  forca: 55,
+  agilidade: 73,
+  resistencia: 69,
+  inteligencia: 94,
+  nivelAmeaca: "BAIXA",
+  bowIdentificado: true,
+  altura: "1.68m",
+  peso: "56kg",
+  anoNascimento: 1976,
+  nacionalidade: "Americana",
+  primeiraAparicao: "Resident Evil Outbreak",
+  jogos: ["Re Outbreak", "Re Outbreak #2", "RE9"],
+  biografia:
+    "Jornalista investigativa determinada a expor a verdade por trás do desastre de Raccoon City. Alyssa sobreviveu aos incidentes biológicos graças à sua inteligência, habilidade investigativa e capacidade de adaptação em situações extremas.",
+  linhaDoTempo: [
+    {
+      ano: 1998,
+      jogo: "Resident Evil Outbreak",
+      evento: "Investiga os primeiros relatos do surto em Raccoon City."
+    },
+    {
+      ano: 1998,
+      jogo: "Resident Evil Outbreak File #2",
+      evento: "Escapa de múltiplas zonas contaminadas durante o colapso da cidade."
+    },
+    {
+      ano: 2003,
+      jogo: "Resident Evil Outbreak",
+      evento: "Publica informações confidenciais relacionadas à Umbrella Corporation."
+    },
+     {
+      ano: 2026,
+      jogo: "Resident Evil Requiem",
+      evento: "Retorna investigando uma nova rede de experimentos biológicos clandestinos."
+    }
+  ]
+  },
+  {
+  id: "RE-088-771-450",
+  nome: "Jack Krauser",
+  tipo: "AGENTES",
+  categoria: "VILAO",
+  status: "MORTO",
+  infeccao: 84,
+  imagem: jack,
+  forca: 95,
+  agilidade: 89,
+  resistencia: 93,
+  inteligencia: 78,
+  nivelAmeaca: "EXTREMA",
+  bowIdentificado: true,
+  altura: "1.88m",
+  peso: "94kg",
+  anoNascimento: 1970,
+  nacionalidade: "Americano",
+  primeiraAparicao: "Resident Evil 4",
+  jogos: [
+    "Re4",
+    "Resident Evil: The Darkside",
+  ],
+  biografia:
+    "Ex-major das forças especiais americanas e antigo parceiro de Leon S. Kennedy. Krauser passou a nutrir obsessão por poder e força militar absoluta. Acabou se envolvendo com Los Iluminados e submetendo seu próprio corpo a experimentos com Las Plagas, tornando-se uma ameaça biológica extremamente perigosa.",
+  linhaDoTempo: [
+    {
+      ano: 2002,
+      jogo: "Resident Evil: The Darkside Chronicles",
+      evento: "Participa de uma operação secreta ao lado de Leon S. Kennedy na América do Sul."
+    },
+    {
+      ano: 2004,
+      jogo: "Resident Evil 4",
+      evento: "Infiltra-se na seita Los Iluminados durante a missão envolvendo Ashley Graham."
+    },
+    {
+      ano: 2004,
+      jogo: "Resident Evil 4",
+      evento: "É derrotado por Leon S. Kennedy durante a operação na Espanha."
+    }
+  ]
   },
   {
     id: "RE-PROT-007",
@@ -1089,7 +1212,7 @@ export const personagens: Personagem[] = [
     categoria: "MONSTRO",
     status: "ATIVO",
     infeccao: 95,
-    imagem: clone,
+    imagem: zeno,
     forca: 92,
     agilidade: 85,
     resistencia: 98,

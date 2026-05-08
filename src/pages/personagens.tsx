@@ -61,7 +61,8 @@ export default function Personagens() {
     HOSTIL: "text-red-600",
     DESCONHECIDO: "text-zinc-400",
     MUTAÇÃO: "text-fuchsia-500",
-    PROTEGIDO: "text-sky-400"
+    PROTEGIDO: "text-sky-400",
+    MORTO:"text-gray-400"
   }
 
   const ameacaColor: Record<NivelAmeaca, string> = {
@@ -83,6 +84,7 @@ export default function Personagens() {
     PROTAGONISTAS: "PROTAGONISTA",
     ALIADOS: "ALIADO",
     VILÕES: "VILAO",
+    MORTO: "MORTO",
     MONSTROS: "MONSTRO",
   }
 
