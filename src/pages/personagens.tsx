@@ -1,7 +1,11 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Search } from "lucide-react"
+import { useAudio } from '../components/audioContext'
+import clickSound from "../audio/botoes.mp3"
+import bgMusic from "../audio/bg-musica.mp3"
 import Header from "../components/header"
 import Umbrella from "../assets/icon-umbrella.png"
+
 
 import type {
   Personagem,
@@ -14,11 +18,42 @@ import { personagens } from "../data/personagens"
 
 export default function Personagens() {
   const [busca, setBusca] = useState("")
+  const [dossierAberto, setDossierAberto] = useState(false)
   const [filtro, setFiltro] = useState<FiltroCategoria>("TODOS")
-
-
-
   const [selecionado, setSelecionado] = useState<Personagem>(personagens[0])
+  const clickRef = useRef<HTMLAudioElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const { soundEnabled } = useAudio()
+
+  useEffect(() => {
+    clickRef.current = new Audio(clickSound);
+
+    if (clickRef.current) clickRef.current.volume = 0.9;
+  }, []);
+
+  const playClick = () => {
+    if (!soundEnabled || !clickRef.current) return;
+
+    clickRef.current.currentTime = 0;
+    clickRef.current.play();
+  };
+
+  useEffect(() => {
+    if (!audioRef.current) return;
+
+    const audio = audioRef.current;
+
+    audio.volume = 0.2;
+
+    if (soundEnabled) {
+      audio.muted = false;
+      audio.play().catch(() => { });
+    } else {
+      audio.muted = true;
+    }
+  }, [soundEnabled]);
+
 
   const statusColor: Record<Status, string> = {
     ATIVO: "text-emerald-400",
@@ -76,21 +111,49 @@ export default function Personagens() {
     "CODE VERONICA": "border-indigo-600 text-indigo-400 bg-indigo-900/20",
   }
 
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  const scrollLeft = () => {
+    scrollRef.current?.scrollBy({
+      left: -300,
+      behavior: "smooth"
+    })
+  }
+
+  const scrollRight = () => {
+    scrollRef.current?.scrollBy({
+      left: 300,
+      behavior: "smooth"
+    })
+  }
+
   return (
     <div
       className="flex flex-col lg:h-screen text-white">
       <Header />
+      <audio
+        ref={audioRef}
+        src={bgMusic}
+        loop
+        autoPlay
+      />
 
       <div className="flex flex-1">
 
-        <aside className="w-[220px] lg:w-[300px] border-r p-4">
+        <aside className={`w-[220px] lg:w-[300px] border-r p-4 transition-all duration-300 ${dossierAberto ? "  opacity-40 cursor-not-allowed" : "cursor-pointer"}`}>
           <div className="relative w-full mb-4">
             <input
               type="text"
               placeholder="Buscar indivíduo..."
               value={busca}
+              disabled={dossierAberto}
               onChange={(e) => setBusca(e.target.value)}
-              className="w-full py-1 pl-2 pr-8 bg-transparent border border-gray-300 focus:outline-none focus:border-red-950"
+              className={`w-full py-1 pl-2 pr-8 bg-transparent border border-gray-300 focus:outline-none transition
+    ${dossierAberto
+                  ? "opacity-50 cursor-not-allowed"
+                  : "focus:border-red-950"
+                }
+  `}
             />
 
             <Search
@@ -114,8 +177,13 @@ export default function Personagens() {
             {filtros.map((item) => (
               <div
                 key={item}
-                onClick={() => setFiltro(item)}
-                className="flex items-center gap-2 px-2 py-1 cursor-pointer group"
+                onClick={() => {
+                  if (dossierAberto) return;
+
+                  playClick();
+                  setFiltro(item)
+                }}
+                className="flex items-center gap-2 px-2 py-1 group"
               >
                 <span className="text-red-600 group-hover:translate-x-1 transition">
                   {">>"}
@@ -151,35 +219,223 @@ export default function Personagens() {
           </div>
         </aside>
 
-        <section className="flex-1 p-4 lg:overflow-y-auto h-[calc(100vh-80px)]">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-5 gap-x-3 lg:gap-x-6">
+        <section className="flex-1 p-4 overflow-y-auto overflow-x-hidden scrollbar-hide h-[calc(100vh-80px)] pb-24">
 
-            {filtrados.map((p) => (
-              <div
-                key={p.id}
+          {!dossierAberto ? (
 
-                className="flex flex-col border border-gray-700 cursor-pointer  transition hover:shadow-[0_0_20px_rgba(255,0,0,0.5)]"
-              >
-                <img src={p.imagem} className="w-full h-30 lg:h-35 object-cover mb-1" />
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-5 gap-x-3 lg:gap-x-6">
 
-                <h3 className=" mx-2 lg:mx-4 text-[1rem]">{p.nome}</h3>
+              {filtrados.map((p) => (
+                <div
+                  key={p.id}
+                  className="flex flex-col border border-gray-700 cursor-pointer transition hover:shadow-[0_0_20px_rgba(255,0,0,0.5)]"
+                >
+                  <img
+                    src={p.imagem}
+                    className="w-full h-30 lg:h-35 object-cover mb-1"
+                  />
 
-                <h4 className="mx-2 lg:mx-4 flex text-[0.8rem] justify-between ">
-                  STATUS:
-                  <span className={statusColor[p.status]}>
-                    {p.status}
-                  </span>
-                </h4>
-                <h3 className="mx-2 lg:mx-4 text-[0.8rem]">ID: {p.id}</h3>
+                  <h3 className="mx-2 lg:mx-4 text-[1rem]">
+                    {p.nome}
+                  </h3>
 
-                <button className="m-2 border border-red-600 text-xs py-1 hover:bg-red-600/20 cursor-pointer"
-                  onClick={() => setSelecionado(p)}>
-                  ANALISAR
-                </button>
+                  <h4 className="mx-2 lg:mx-4 flex text-[0.8rem] justify-between">
+                    STATUS:
+
+                    <span className={statusColor[p.status]}>
+                      {p.status}
+                    </span>
+                  </h4>
+
+                  <h3 className="mx-2 lg:mx-4 text-[0.8rem]">
+                    ID: {p.id}
+                  </h3>
+
+                  <button
+                    className="m-2 border border-red-600 text-xs py-1 hover:bg-red-600/20 cursor-pointer"
+                    onClick={() => {
+                      playClick()
+                      setSelecionado(p)
+                    }}
+                  >
+                    ANALISAR
+                  </button>
+                </div>
+              ))}
+
+            </div>
+
+          ) : (
+
+            <div className="border border-red-900  p-2 bg-black/40 h-full overflow-y-auto">
+
+              <div className="flex items-center justify-between mb-3 border-b border-red-900 pb-2">
+
+                <div>
+                  <h1 className="text-2xl tracking-widest text-gray-100">
+                    DOSSIÊ: {selecionado.nome}
+                  </h1>
+                </div>
               </div>
-            ))}
 
-          </div>
+              <div className="flex flex-col gap-3">
+
+                <div className="relative">
+                  <div className="flex  gap-6">
+                    <div>
+                      <img
+                        src={selecionado.imagem}
+                        className="w-full h-[170px] object-cover border border-red-900 grayscale"
+                      />
+                      <div className="absolute inset-0 bg-black/40" />
+                    </div>
+
+                    <div className="w-100">
+                      <div className="flex justify-between text-whiter">
+                        <p >
+                          ID UMBRELLA:
+                        </p>
+                        <p>
+                          {selecionado.id}
+                        </p>
+                      </div>
+                      <div className="flex justify-between text-gray-200">
+                        <p >
+                          NOME COMPLETO:
+                        </p>
+                        <p>
+                          {selecionado.nome}
+                        </p>
+                      </div>
+                      <div className="flex justify-between text-gray-200">
+                        <p >
+                          DATA DE NASCIMENTO:
+                        </p>
+                        <p>
+                          {selecionado.anoNascimento}
+                        </p>
+                      </div>
+                      <div className="flex justify-between text-gray-200">
+                        <p >
+                          NACIONALIDADE:
+                        </p>
+                        <p>
+                          {selecionado.nacionalidade}
+                        </p>
+                      </div>
+                      <div className="flex justify-between text-gray-200">
+                        <p >
+                          PRIMEIRA APARIÇÃO:
+                        </p>
+                        <p>
+                          {selecionado.primeiraAparicao}
+                        </p>
+                      </div>
+                      <div className="flex justify-between text-gray-200">
+                        <p >
+                          STATUS ATUAL:
+                        </p>
+                        <p className={statusColor[selecionado.status]}>
+                          {selecionado.status}
+                        </p>
+                      </div>
+                      <div className="flex justify-between text-gray-200">
+                        <p >
+                          NÍVEL DE AMEAÇA:
+                        </p>
+                        <p className={ameacaColor[selecionado.nivelAmeaca]}>
+                          {selecionado.nivelAmeaca}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+
+                  <div className="border border-red-900 p-4 bg-red-950/10">
+                    <h3 className="text-red-500 mb-2">
+                      RELATÓRIO
+                    </h3>
+
+                    <p className="text-gray-300 leading-relaxed">
+                      {selecionado.biografia}
+                    </p>
+                  </div>
+
+                </div>
+                <div className="relative">
+
+                  <button
+                    onClick={() => {
+                       playClick();
+                      scrollLeft()
+                    }}
+                    className="
+      absolute left-0 top-1/2 -translate-y-1/2 z-10
+      text-white text-4xl lg:text-6xl
+      hover:text-red-500
+      transition
+      cursor-pointer
+    "
+                  >
+                    ‹
+                  </button>
+
+                  <div
+                    ref={scrollRef}
+                    className="flex gap-4 overflow-x-auto scrollbar-hide px-10"
+                  >
+                    {selecionado.linhaDoTempo.map((item, index) => (
+                      <div
+                        key={index}
+                        className="
+          min-w-[220px]
+          border border-gray-900
+          bg-black/40
+          p-3
+          flex-shrink-0
+        "
+                      >
+                        <p className="text-red-500 text-xs">
+                          {item.ano}
+                        </p>
+
+                        <h2 className="text-white text-lg">
+                          {item.jogo}
+                        </h2>
+
+                        <p className="text-gray-400 text-sm mt-1">
+                          {item.evento}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() => {
+                       playClick();
+                      scrollRight()
+                    }}
+                    className="
+      absolute right-0 top-1/2 -translate-y-1/2 z-10
+      text-white text-4xl lg:text-6xl
+      hover:text-red-500
+      transition
+      cursor-pointer
+    "
+                  >
+                    ›
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          )}
+
         </section>
 
         <aside className="w-[220px] lg:w-[350px] border-l border-red-900 py-3 px-4 h-[calc(100vh-80px)] overflow-hidden ">
@@ -284,8 +540,13 @@ export default function Personagens() {
             ))}
 
           </div>
-          <button className="hidden lg:flex flex-col w-full m-2 border border-red-600 text-base py-1 hover:bg-red-600/20 cursor-pointer">
-            ABRIR DOSSIÊ ▶
+          <button
+            onClick={() => {
+              playClick()
+              setDossierAberto(!dossierAberto)
+            }}
+            className="hidden lg:flex flex-col w-full m-2 border border-red-600 text-base py-1 hover:bg-red-600/20 cursor-pointer">
+            {dossierAberto ? "FECHAR DOSSIÊ ◀" : "ABRIR DOSSIÊ ▶"}
           </button>
 
 

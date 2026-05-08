@@ -16,13 +16,13 @@ export type Tipo =
   | "INFECTADOS"
   | "MUTANTES"
 
-  export type Categoria =
+export type Categoria =
   | "PROTAGONISTA"
   | "ALIADO"
   | "VILAO"
   | "MONSTRO"
 
-  export type FiltroCategoria =
+export type FiltroCategoria =
   | "TODOS"
   | "PROTAGONISTAS"
   | "ALIADOS"
@@ -33,7 +33,7 @@ export type Personagem = {
   id: string
   nome: string
   tipo: Tipo
-   categoria: Categoria
+  categoria: Categoria
   status: Status
   infeccao: number
   imagem: string
@@ -46,4 +46,13 @@ export type Personagem = {
   altura: string
   peso: string
   jogos: string[]
+  anoNascimento: number
+  nacionalidade: string
+  biografia: string
+  primeiraAparicao: string
+ linhaDoTempo: {
+  ano: number
+  jogo: string
+  evento: string
+}[]
 }
