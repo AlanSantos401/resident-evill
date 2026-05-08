@@ -221,7 +221,7 @@ export default function Personagens() {
           </div>
         </aside>
 
-        <section className="flex-1 p-4 overflow-y-auto overflow-x-hidden scrollbar-hide h-[calc(100vh-80px)] pb-24">
+        <section className="flex-1 p-4 lg:overflow-y-auto overflow-x-hidden scrollbar-hide h-[calc(100vh-80px)] pb-24">
 
           {!dossierAberto ? (
 
@@ -269,7 +269,7 @@ export default function Personagens() {
 
           ) : (
 
-            <div className="border border-red-900  p-2 bg-black/40 h-full overflow-y-auto">
+            <div className="border border-red-900  p-2 bg-black/40 lg:h-full overflow-y-auto">
 
               <div className="flex items-center justify-between mb-3 border-b border-red-900 pb-2">
 
@@ -283,7 +283,7 @@ export default function Personagens() {
               <div className="flex flex-col gap-3">
 
                 <div className="relative">
-                  <div className="flex  gap-6">
+                  <div className="flex gap-3 lg:gap-6">
                     <div>
                       <img
                         src={selecionado.imagem}
@@ -293,7 +293,7 @@ export default function Personagens() {
                     </div>
 
                     <div className="w-100">
-                      <div className="flex justify-between text-whiter">
+                      <div className="flex justify-between text-xs lg:text-base text-white">
                         <p >
                           ID UMBRELLA:
                         </p>
@@ -353,7 +353,7 @@ export default function Personagens() {
                   </div>
                 </div>
 
-                <div className="space-y-2">
+                <div className="lg:space-y-2">
 
                   <div className="border border-red-900 p-4 bg-red-950/10">
                     <h3 className="text-red-500 mb-2">
@@ -440,9 +440,9 @@ export default function Personagens() {
 
         </section>
 
-        <aside className="w-[220px] lg:w-[350px] border-l border-red-900 py-3 px-4 h-[calc(100vh-80px)] overflow-hidden ">
+        <aside className="w-[220px] lg:w-[350px] border-l border-red-900 lg:py-3 px-4 h-[calc(100vh-80px)] overflow-hidden ">
 
-          <h2 className="text-gray-300 mb-1 text-base lg:text-xl font-bold">SCAN BIOLÓGICO</h2>
+          <h2 className="hidden lg:flex text-gray-300 mb-1 text-base lg:text-xl font-bold">SCAN BIOLÓGICO</h2>
 
           <div className="mb-2 ">
             <img
@@ -547,7 +547,7 @@ export default function Personagens() {
               playClick()
               setDossierAberto(!dossierAberto)
             }}
-            className="hidden lg:flex flex-col w-full m-2 border border-red-600 text-base py-1 hover:bg-red-600/20 cursor-pointer">
+            className=" lg:flex flex-col w-full m-2 border border-red-600 text-base py-1 hover:bg-red-600/20 cursor-pointer">
             {dossierAberto ? "FECHAR DOSSIÊ ◀" : "ABRIR DOSSIÊ ▶"}
           </button>
 
