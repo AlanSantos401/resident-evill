@@ -140,9 +140,9 @@ export default function Personagens() {
         autoPlay
       />
 
-      <div className="flex flex-1">
+      <div className="flex flex-1 overflow-hidden">
 
-        <aside className={`w-[220px] lg:w-[300px] border-r p-4 transition-all duration-300 ${dossierAberto ? "  opacity-40 cursor-not-allowed" : "cursor-pointer"}`}>
+        <aside className={`w-[220px] lg:w-[300px] border-r p-4 overflow-hidden transition-all duration-300 ${dossierAberto ? "  opacity-40 cursor-not-allowed" : "cursor-pointer"}`}>
           <div className="relative w-full mb-4">
             <input
               type="text"
@@ -221,7 +221,7 @@ export default function Personagens() {
           </div>
         </aside>
 
-        <section className="flex-1 p-4 lg:overflow-y-auto overflow-x-hidden scrollbar-hide h-[calc(100vh-80px)] pb-24">
+        <section className="flex-1 p-4 overflow-y-auto overflow-x-hidden scrollbar-hide h-[calc(100vh-80px)] pb-24">
 
           {!dossierAberto ? (
 
