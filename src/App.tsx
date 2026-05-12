@@ -18,7 +18,7 @@ function AnimatedRoutes() {
 
   return (
     <div style={{ position: "relative", overflow: "hidden" }}>
-      
+
       <div
         style={{
           position: "fixed",
@@ -61,14 +61,13 @@ export default function App() {
 
   return (
     <>
-      {loading && <Loader onFinish={() => setLoading(false)} />}
+      <BlockZoom />
 
-      {!loading && (
-        <>
-          <BlockZoom />
-          <AnimatedRoutes />
-        </>
+      {loading && (
+        <Loader onFinish={() => setLoading(false)} />
       )}
+
+      {!loading && <AnimatedRoutes />}
     </>
   );
 }

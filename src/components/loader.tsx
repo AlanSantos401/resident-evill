@@ -8,23 +8,11 @@ import clickSound from "../audio/botoes.mp3";
 export default function Loader({ onFinish }: { onFinish: () => void }) {
   const [progress, setProgress] = useState(0);
   const [done, setDone] = useState(false);
-  const [isLandscape, setIsLandscape] = useState(true);
 
   const started = useRef(false);
   const clickRef = useRef<HTMLAudioElement | null>(null);
-
   const { soundEnabled } = useAudio();
 
-  useEffect(() => {
-    const checkOrientation = () => {
-      setIsLandscape(window.innerWidth > window.innerHeight);
-    };
-
-    checkOrientation();
-    window.addEventListener("resize", checkOrientation);
-
-    return () => window.removeEventListener("resize", checkOrientation);
-  }, []);
 
   useEffect(() => {
     clickRef.current = new Audio(clickSound);
@@ -77,28 +65,7 @@ export default function Loader({ onFinish }: { onFinish: () => void }) {
     run();
   }, []);
 
-  if (!isLandscape) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center bg-black text-white z-50">
-        <div className="flex flex-col text-center gap-3">
-          <div className="flex items-center justify-center gap-6">
-            <img
-            className="w-10 tracking-widest animate-pulse"
-            src={umbrella}
-            alt="icon-umbrella"
-          />
-          <p className="text-2xl tracking-widest animate-pulse">
-            GIRE O CELULAR
-          </p>
-          </div>
-          
-          <p className="text-gray-400 mt-2 text-[1rem] drop-shadow-[0_0_10px_#ff0000]">
-            Este sistema funciona melhor no modo paisagem
-          </p>
-        </div>
-      </div>
-    );
-  }
+  
 
 
   return (
