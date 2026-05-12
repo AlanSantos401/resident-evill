@@ -62,7 +62,7 @@ export default function Personagens() {
     DESCONHECIDO: "text-zinc-400",
     MUTAÇÃO: "text-fuchsia-500",
     PROTEGIDO: "text-sky-400",
-    MORTO:"text-gray-400"
+    MORTO: "text-gray-400"
   }
 
   const ameacaColor: Record<NivelAmeaca, string> = {
@@ -274,7 +274,7 @@ export default function Personagens() {
               <div className="flex items-center justify-between mb-3 border-b border-red-900 pb-2">
 
                 <div>
-                  <h1 className="text-2xl tracking-widest text-gray-100">
+                  <h1 className="text-base lg:text-2xl tracking-widest text-gray-100">
                     DOSSIÊ: {selecionado.nome}
                   </h1>
                 </div>
@@ -287,7 +287,7 @@ export default function Personagens() {
                     <div>
                       <img
                         src={selecionado.imagem}
-                        className="w-full h-[170px] object-cover border border-red-900 grayscale"
+                        className="hidden lg:flex w-full h-[170px] object-cover border border-red-900 grayscale"
                       />
                       <div className="absolute inset-0 bg-black/40" />
                     </div>
@@ -353,9 +353,9 @@ export default function Personagens() {
                   </div>
                 </div>
 
-                <div className="lg:space-y-2">
+                <div className="lg:space-y-1">
 
-                  <div className="border border-red-900 p-4 bg-red-950/10">
+                  <div className="border border-red-900 p-2 bg-red-950/10">
                     <h3 className="text-red-500 mb-2">
                       RELATÓRIO
                     </h3>
@@ -366,19 +366,17 @@ export default function Personagens() {
                   </div>
 
                 </div>
-                <div className="relative">
+                <div className="relative w-full">
 
                   <button
                     onClick={() => {
-                       playClick();
-                      scrollLeft()
+                      playClick();
+                      scrollLeft();
                     }}
                     className="
-      absolute left-0 top-1/2 -translate-y-1/2 z-10
+      absolute left-2 top-1/2 -translate-y-1/2 z-10
       text-white text-4xl lg:text-6xl
-      hover:text-red-500
-      transition
-      cursor-pointer
+      hover:text-red-500 transition
     "
                   >
                     ‹
@@ -386,45 +384,56 @@ export default function Personagens() {
 
                   <div
                     ref={scrollRef}
-                    className="flex gap-4 overflow-x-auto scrollbar-hide px-10"
+                    className="
+      flex overflow-x-auto
+      snap-x snap-mandatory
+      scroll-smooth
+      scrollbar-hide
+    "
                   >
                     {selecionado.linhaDoTempo.map((item, index) => (
                       <div
                         key={index}
                         className="
-          min-w-[220px]
-          border border-gray-900
-          bg-black/40
-          p-3
-          flex-shrink-0
+          min-w-full
+          snap-center
+          px-10
+          flex justify-center
         "
                       >
-                        <p className="text-red-500 text-xs">
-                          {item.ano}
-                        </p>
+                        <div
+                          className="
+            w-full max-w-[700px]
+            border border-gray-900
+            bg-black/40
+            p-5
+          "
+                        >
+                          <p className="text-red-500 text-xs">
+                            {item.ano}
+                          </p>
 
-                        <h2 className="text-white text-lg">
-                          {item.jogo}
-                        </h2>
+                          <h2 className="text-white text-lg">
+                            {item.jogo}
+                          </h2>
 
-                        <p className="text-gray-400 text-sm mt-1">
-                          {item.evento}
-                        </p>
+                          <p className="text-gray-400 text-sm mt-1">
+                            {item.evento}
+                          </p>
+                        </div>
                       </div>
                     ))}
                   </div>
 
                   <button
                     onClick={() => {
-                       playClick();
-                      scrollRight()
+                      playClick();
+                      scrollRight();
                     }}
                     className="
-      absolute right-0 top-1/2 -translate-y-1/2 z-10
+      absolute right-2 top-1/2 -translate-y-1/2 z-10
       text-white text-4xl lg:text-6xl
-      hover:text-red-500
-      transition
-      cursor-pointer
+      hover:text-red-500 transition
     "
                   >
                     ›
