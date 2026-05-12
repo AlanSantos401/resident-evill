@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import mapa from "../assets/mapa.png";
 import raccoonImg from "../assets/raccoon.png";
+import clickSound from "../audio/botoes.mp3"
+import bgMusic from "../audio/bg-musica.mp3"
 
 import Header from "../components/header";
+import { useAudio } from "../components/audioContext";
 
 const locais = [
   {
@@ -252,6 +255,38 @@ export default function Mapas() {
     null | (typeof locais)[0]
   >(null);
   const [abrirArquivo, setAbrirArquivo] = useState(false);
+  const clickRef = useRef<HTMLAudioElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const { soundEnabled } = useAudio()
+
+  useEffect(() => {
+    clickRef.current = new Audio(clickSound);
+
+    if (clickRef.current) clickRef.current.volume = 0.9;
+  }, []);
+
+  const playClick = () => {
+    if (!soundEnabled || !clickRef.current) return;
+
+    clickRef.current.currentTime = 0;
+    clickRef.current.play();
+  };
+
+  useEffect(() => {
+    if (!audioRef.current) return;
+
+    const audio = audioRef.current;
+
+    audio.volume = 0.2;
+
+    if (soundEnabled) {
+      audio.muted = false;
+      audio.play().catch(() => { });
+    } else {
+      audio.muted = true;
+    }
+  }, [soundEnabled]);
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black">
@@ -267,6 +302,13 @@ export default function Mapas() {
       "
       />
 
+      <audio
+        ref={audioRef}
+        src={bgMusic}
+        loop
+        autoPlay
+      />
+
       <div className="absolute inset-0 bg-black/30" />
 
       <div className="absolute top-0 left-0 w-full z-20">
@@ -277,37 +319,47 @@ export default function Mapas() {
         <button
           key={item.id}
           onClick={() => {
+            playClick();
             setSelecionado(item);
             setAbrirArquivo(false);
           }}
           className={`
-          absolute z-40
-          w-10 h-10
-          cursor-pointer
-          rounded-full
-          border border-red-500
-          bg-red-600/20
-          text-white
-          text-xl
-          font-bold
-          shadow-[0_0_35px_red]
-          backdrop-blur-sm
-          transition-all duration-300
+    absolute z-40
 
-          hover:scale-110
+    w-10 h-10
+    cursor-pointer
 
-          ${selecionado?.id === item.id
+    flex items-center justify-center
+
+    rounded-full
+    border border-red-500
+    bg-red-600/20
+
+    text-white
+    text-sm
+    font-bold
+
+    shadow-[0_0_35px_red]
+    backdrop-blur-sm
+
+    transition-all duration-300
+
+    hover:scale-110
+
+    ${selecionado?.id === item.id
               ? "scale-125 animate-pulse"
               : "animate-pulse"
             }
-        `}
+  `}
           style={{
             left: item.x,
             top: item.y,
             transform: "translate(-50%, -50%)",
           }}
         >
-          {item.id}
+          <span className="leading-none">
+            {item.id}
+          </span>
         </button>
       ))}
 
@@ -319,18 +371,13 @@ export default function Mapas() {
           bottom-8
           -translate-x-1/2
           z-40
-
           w-[660px]
           h-[300px]
-
           bg-black/80
           backdrop-blur-md
-
           border border-red-900
-
           flex
           overflow-hidden
-
           shadow-[0_0_30px_rgba(255,0,0,0.3)]
         "
         >
@@ -354,6 +401,7 @@ export default function Mapas() {
 
             <button
               onClick={() => {
+                playClick();
                 setSelecionado(null);
                 setAbrirArquivo(false);
               }}
@@ -387,8 +435,10 @@ export default function Mapas() {
             </p>
 
             <button
-              onClick={() =>
+              onClick={() => {
+                playClick();
                 setAbrirArquivo(!abrirArquivo)
+              }
               }
               className="
               mt-4
@@ -396,13 +446,9 @@ export default function Mapas() {
               cursor-pointer
               border border-red-900
               bg-red-950/20
-
               hover:bg-red-900/30
-
               transition-all duration-300
-
               px-4 py-3
-
               flex items-center justify-between
             "
             >
@@ -440,23 +486,15 @@ export default function Mapas() {
           right-6
           top-[55.3%]
           -translate-y-1/2
-
           z-50
-
           w-[420px]
           h-[80vh]
-
           bg-black/95
           backdrop-blur-md
-
           border border-red-900
-
           p-6
-
           overflow-y-auto
-
           shadow-[0_0_40px_rgba(255,0,0,0.35)]
-
           animate-in
           slide-in-from-right
           duration-300
@@ -464,12 +502,15 @@ export default function Mapas() {
         >
 
           <button
-            onClick={() => setAbrirArquivo(false)}
+            onClick={() => {
+              playClick();
+              setAbrirArquivo(false)
+            }}
             className="
             absolute
             top-4
             right-5
-
+           cursor-pointer
             text-2xl
             text-gray-500
 
@@ -522,9 +563,9 @@ export default function Mapas() {
 
           </div>
 
-        </div> 
+        </div>
       )}
-      
+
       <div
         className="
         absolute inset-0
