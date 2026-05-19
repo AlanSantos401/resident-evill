@@ -32,6 +32,9 @@ const locais = [
 
     x: "27%",
     y: "21%",
+
+    xMobile: "27%",
+    yMobile: "24%",
   },
 
   {
@@ -56,6 +59,9 @@ const locais = [
 
     x: "22%",
     y: "42%",
+
+    xMobile: "22%",
+    yMobile: "47%",
   },
 
   {
@@ -80,6 +86,9 @@ const locais = [
 
     x: "47.2%",
     y: "49%",
+
+    xMobile: "47%",
+    yMobile: "53%",
   },
 
   {
@@ -104,6 +113,9 @@ const locais = [
 
     x: "29%",
     y: "64%",
+
+    xMobile: "30%",
+    yMobile: "66%",
   },
 
   {
@@ -128,6 +140,9 @@ const locais = [
 
     x: "47.5%",
     y: "16%",
+
+    xMobile: "48%",
+    yMobile: "19%",
   },
 
   {
@@ -152,6 +167,9 @@ const locais = [
 
     x: "80%",
     y: "19%",
+
+    xMobile: "78%",
+    yMobile: "25%",
   },
 
   {
@@ -176,6 +194,9 @@ const locais = [
 
     x: "68%",
     y: "40%",
+
+    xMobile: "68%",
+    yMobile: "43%",
   },
 
   {
@@ -200,6 +221,9 @@ const locais = [
 
     x: "67%",
     y: "58%",
+
+    xMobile: "67%",
+    yMobile: "62%",
   },
 
   {
@@ -224,6 +248,9 @@ const locais = [
 
     x: "44%",
     y: "70%",
+
+    xMobile: "43%",
+    yMobile: "74%",
   },
 
   {
@@ -248,6 +275,9 @@ const locais = [
 
     x: "52%",
     y: "90%",
+
+    xMobile: "52%",
+    yMobile: "94%",
   },
 ];
 
@@ -261,6 +291,18 @@ export default function Mapas() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const { soundEnabled } = useAudio()
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     clickRef.current = new Audio(clickSound);
@@ -299,13 +341,14 @@ export default function Mapas() {
     }
   }, [soundEnabled]);
 
+
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black">
 
       <img
         src={mapa}
-        className="
-        mt-2
+        className=" mt-5
+        lg:mt-2
         absolute inset-0
         w-full h-full
         object-fill
@@ -336,8 +379,8 @@ export default function Mapas() {
           }}
           className={`
     absolute z-40
-
-    w-10 h-10
+    w-8 h-8
+    lg:w-10 lg:h-10
     cursor-pointer
 
     flex items-center justify-center
@@ -363,8 +406,8 @@ export default function Mapas() {
             }
   `}
           style={{
-            left: item.x,
-            top: item.y,
+            left: isMobile ? item.xMobile : item.x,
+            top: isMobile ? item.yMobile : item.y,
             transform: "translate(-50%, -50%)",
           }}
         >
@@ -554,7 +597,7 @@ export default function Mapas() {
             {selecionado.detalhes.map((item, index) => (
               <div
                 key={index}
-                  onClick={playError}
+                onClick={playError}
                 className="
                 border border-red-900
                 bg-red-950/20
