@@ -376,7 +376,7 @@ export default function Personagens() {
                     className="
       absolute left-2 top-1/2 -translate-y-1/2 z-10
       text-white text-4xl lg:text-6xl
-      hover:text-red-500 transition
+      hover:text-red-500 transition cursor-pointer
     "
                   >
                     ‹
@@ -433,7 +433,7 @@ export default function Personagens() {
                     className="
       absolute right-2 top-1/2 -translate-y-1/2 z-10
       text-white text-4xl lg:text-6xl
-      hover:text-red-500 transition
+      hover:text-red-500 transition cursor-pointer
     "
                   >
                     ›

@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useAudio } from "./audioContext";
 
 import clickSound from "../audio/botoes.mp3"
+import error from "../audio/error.mp3"
 
 export default function Header() {
   const location = useLocation();
@@ -15,6 +16,7 @@ export default function Header() {
   const { soundEnabled, setSoundEnabled } = useAudio()
 
   const clickRef = useRef<HTMLAudioElement | null>(null);
+  const errorRef = useRef<HTMLAudioElement | null>(null);
   const refs = useRef<(HTMLDivElement | null)[]>([]);
 
   const [style, setStyle] = useState<{ left: number; width: number }>({
@@ -50,8 +52,10 @@ export default function Header() {
 
   useEffect(() => {
     clickRef.current = new Audio(clickSound)
+    errorRef.current = new Audio(error)
 
     if (clickRef.current) clickRef.current.volume = 0.8
+    if (errorRef.current) errorRef.current.volume = 0.8
   }, [])
 
   const playClick = () => {
@@ -59,6 +63,13 @@ export default function Header() {
 
     clickRef.current.currentTime = 0;
     clickRef.current.play();
+  };
+
+  const playError = () => {
+    if (!soundEnabled || !errorRef.current) return;
+
+    errorRef.current.currentTime = 0;
+    errorRef.current.play();
   };
 
 
@@ -131,7 +142,7 @@ export default function Header() {
         </div>
 
         <div
-          onClick={playClick}
+          onClick={playError}
           className="relative p-2 lg:px-5 lg:py-3 flex items-center gap-2 
                         border border-red-600 text-white uppercase
                         bg-red-600/10 overflow-hidden cursor-pointer

@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import mapa from "../assets/mapa.png";
 import raccoonImg from "../assets/raccoon.png";
 import clickSound from "../audio/botoes.mp3"
+import errorSound from "../audio/error.mp3"
 import bgMusic from "../audio/bg-musica.mp3"
 
 import Header from "../components/header";
@@ -256,14 +257,17 @@ export default function Mapas() {
   >(null);
   const [abrirArquivo, setAbrirArquivo] = useState(false);
   const clickRef = useRef<HTMLAudioElement | null>(null);
+  const errorRef = useRef<HTMLAudioElement | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const { soundEnabled } = useAudio()
 
   useEffect(() => {
     clickRef.current = new Audio(clickSound);
+    errorRef.current = new Audio(errorSound)
 
     if (clickRef.current) clickRef.current.volume = 0.9;
+    if (errorRef.current) errorRef.current.volume = 0.9
   }, []);
 
   const playClick = () => {
@@ -271,6 +275,13 @@ export default function Mapas() {
 
     clickRef.current.currentTime = 0;
     clickRef.current.play();
+  };
+
+  const playError = () => {
+    if (!soundEnabled || !errorRef.current) return;
+
+    errorRef.current.currentTime = 0;
+    errorRef.current.play();
   };
 
   useEffect(() => {
@@ -543,12 +554,12 @@ export default function Mapas() {
             {selecionado.detalhes.map((item, index) => (
               <div
                 key={index}
+                  onClick={playError}
                 className="
                 border border-red-900
                 bg-red-950/20
-
+                cursor-pointer
                 p-4
-
                 text-gray-300
                 text-sm
                 tracking-wide
