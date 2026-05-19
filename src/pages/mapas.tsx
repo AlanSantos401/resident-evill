@@ -422,7 +422,7 @@ export default function Mapas() {
           className="
           absolute
           left-[22.4%]
-          bottom-4 lg:bottom-8
+          bottom-8
           -translate-x-1/2
           z-40 w-[550px] h-[200px]
           lg:w-[660px]
@@ -538,10 +538,9 @@ export default function Mapas() {
           className="
           absolute
           right-6
-          top-[57.3%]
-          lg:top-[55.3%]
+          top-[55.3%]
           -translate-y-1/2
-          z-50 w-[320px] h-[70vh]
+          z-50 w-[320px] h-[68vh]
           lg:w-[420px]
           lg:h-[80vh]
           bg-black/95
