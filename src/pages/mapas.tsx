@@ -422,11 +422,11 @@ export default function Mapas() {
           className="
           absolute
           left-[22.4%]
-          bottom-8
+          bottom-4 lg:bottom-8
           -translate-x-1/2
-          z-40
-          w-[660px]
-          h-[300px]
+          z-40 w-[550px] h-[200px]
+          lg:w-[660px]
+          lg:h-[300px]
           bg-black/80
           backdrop-blur-md
           border border-red-900
@@ -538,11 +538,12 @@ export default function Mapas() {
           className="
           absolute
           right-6
-          top-[55.3%]
+          top-[57.3%]
+          lg:top-[55.3%]
           -translate-y-1/2
-          z-50
-          w-[420px]
-          h-[80vh]
+          z-50 w-[320px] h-[70vh]
+          lg:w-[420px]
+          lg:h-[80vh]
           bg-black/95
           backdrop-blur-md
           border border-red-900
