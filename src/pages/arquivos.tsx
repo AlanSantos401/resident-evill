@@ -6,9 +6,9 @@ export default function Arquivos() {
       <div className="fixed top-0 left-0 w-full z-50 bg-black">
         <Header />
       </div>
-      <div className="text-white max-w-6xl mx-auto px-8 py-35 h-screen overflow-y-auto scrollbar-hide">
+      <div className="text-white max-w-6xl mx-auto px-8 py-20 lg:py-35 h-screen overflow-y-auto scrollbar-hide">
 
-        <h1 className="text-5xl font-bold text-red-600 mb-6 tracking-widest">
+        <h1 className=" text-3xl lg:text-5xl font-bold text-red-600 mb-6 tracking-widest">
           ARQUIVOS DA FRANQUIA
         </h1>
 
@@ -24,7 +24,6 @@ export default function Arquivos() {
           recebendo dezenas de jogos principais, spin-offs, remakes, filmes, animações e conteúdos extras.
         </p>
 
-        {/* CRIADORES */}
         <section className="mb-20">
           <h2 className="text-3xl font-bold border-b border-red-700 pb-3 mb-8">
             CRIADORES
@@ -48,7 +47,6 @@ export default function Arquivos() {
           </div>
         </section>
 
-        {/* JOGOS OFICIAIS */}
         <section className="mb-20">
           <h2 className="text-3xl font-bold border-b border-red-700 pb-3 mb-8">
             JOGOS OFICIAIS
@@ -81,7 +79,6 @@ export default function Arquivos() {
           </div>
         </section>
 
-        {/* SPIN OFFS */}
         <section className="mb-20">
           <h2 className="text-3xl font-bold border-b border-red-700 pb-3 mb-8">
             SPIN-OFFS E JOGOS NÃO PRINCIPAIS
@@ -105,7 +102,6 @@ export default function Arquivos() {
           </div>
         </section>
 
-        {/* FILMES */}
         <section className="mb-20">
           <h2 className="text-3xl font-bold border-b border-red-700 pb-3 mb-8">
             FILMES E ANIMAÇÕES
@@ -132,7 +128,6 @@ export default function Arquivos() {
           </div>
         </section>
 
-        {/* LEGADO */}
         <section>
           <h2 className="text-3xl font-bold border-b border-red-700 pb-3 mb-8">
             LEGADO
