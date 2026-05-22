@@ -1,10 +1,37 @@
 import Header from "../components/header";
+import bgMusic from "../audio/bg-musica.mp3"
+import { useAudio } from "../components/audioContext";
+import { useEffect, useRef } from "react";
 
 export default function Arquivos() {
+  const { soundEnabled } = useAudio()
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    if (!audioRef.current) return;
+
+    const audio = audioRef.current;
+
+    audio.volume = 0.2;
+
+    if (soundEnabled) {
+      audio.muted = false;
+      audio.play().catch(() => { });
+    } else {
+      audio.muted = true;
+    }
+  }, [soundEnabled]);
+
   return (
     <div className="h-screen bg-black overflow-hidden">
       <div className="fixed top-0 left-0 w-full z-50 bg-black">
         <Header />
+        <audio
+          ref={audioRef}
+          src={bgMusic}
+          loop
+          autoPlay
+        />
       </div>
       <div className="text-white max-w-6xl mx-auto px-8 py-20 lg:py-35 h-screen overflow-y-auto scrollbar-hide">
 
