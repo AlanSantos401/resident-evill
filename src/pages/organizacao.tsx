@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Header from "../components/header";
+import clickSound from "../audio/botoes.mp3"
+import bgMusic from "../audio/bg-musica.mp3"
+import { useAudio } from "../components/audioContext";
 
 import umbrellaLogo from "../assets/icon-umbrella.png";
 
@@ -145,9 +148,49 @@ const parceiras = [
 
 export default function Organizacao() {
   const [selecionado, setSelecionado] = useState<any | null>(null);
+  const clickRef = useRef<HTMLAudioElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+
+  const { soundEnabled } = useAudio()
+
+  useEffect(() => {
+    clickRef.current = new Audio(clickSound);
+
+    if (clickRef.current) clickRef.current.volume = 0.9;
+  }, []);
+
+  const playClick = () => {
+    if (!soundEnabled || !clickRef.current) return;
+
+    clickRef.current.currentTime = 0;
+    clickRef.current.play();
+  };
+
+  useEffect(() => {
+    if (!audioRef.current) return;
+
+    const audio = audioRef.current;
+
+    audio.volume = 0.2;
+
+    if (soundEnabled) {
+      audio.muted = false;
+      audio.play().catch(() => { });
+    } else {
+      audio.muted = true;
+    }
+  }, [soundEnabled]);
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
+
+      <audio
+        ref={audioRef}
+        src={bgMusic}
+        loop
+        autoPlay
+      />
 
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,0,0,0.12),transparent)]" />
 
@@ -160,29 +203,42 @@ export default function Organizacao() {
       {selecionado && (
         <div
           className="
-            fixed inset-0 z-[999]
-            bg-black/80
-            backdrop-blur-md
-            flex items-center justify-center
-            p-6
-          "
-          onClick={() => setSelecionado(null)}
+      fixed inset-0 z-[999]
+      bg-black/80
+      backdrop-blur-md
+      flex items-center justify-center
+      p-2 lg:p-6
+    "
+          onClick={() => {
+            playClick()
+            setSelecionado(null)
+          }}
         >
 
           <div
             onClick={(e) => e.stopPropagation()}
             className="
-              w-full
-              max-w-4xl
-              border border-red-900
-              bg-gradient-to-br
-              from-black
-              via-zinc-950
-              to-red-950
-              grid md:grid-cols-2
-              overflow-hidden
-              shadow-[0_0_60px_rgba(255,0,0,0.25)]
-            "
+        w-full
+        max-w-3xl
+        lg:max-w-5xl
+
+        h-[90vh]
+
+        border border-red-900
+
+        bg-gradient-to-br
+        from-black
+        via-zinc-950
+        to-red-950
+
+        grid
+        md:grid-cols-2
+
+        overflow-y-auto
+        scrollbar-hide
+
+        shadow-[0_0_60px_rgba(255,0,0,0.25)]
+      "
           >
 
             <div className="relative">
@@ -190,72 +246,177 @@ export default function Organizacao() {
               <img
                 src={selecionado.imagem || selecionado.logo}
                 className="
-                  w-full
-                  h-full
-                  object-cover object-top
-                  min-h-[480px]
-                "
+            w-full
+            h-full
+
+            object-cover
+            object-top
+
+            min-h-[220px]
+            lg:min-h-[480px]
+          "
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+              <div
+                className="
+            absolute inset-0
+            bg-gradient-to-t
+            from-black
+            via-black/20
+            to-transparent
+          "
+              />
 
             </div>
 
-            <div className="p-8 flex flex-col justify-center">
+            <div
+              className="
+          p-4
+          lg:p-8
 
-              <p className="text-red-500 tracking-[0.4em] text-sm">
+          flex flex-col justify-center
+        "
+            >
+
+              <p
+                className="
+            text-red-500
+            tracking-[0.4em]
+
+            text-xs
+            lg:text-sm
+          "
+              >
                 DOSSIÊ CORPORATIVO
               </p>
 
-              <h2 className="text-5xl font-bold mt-4 leading-tight">
+              <h2
+                className="
+            text-3xl
+            lg:text-5xl
+
+            font-bold
+            mt-4
+            leading-tight
+          "
+              >
                 {selecionado.nome}
               </h2>
 
-              <p className="text-red-400 mt-4 text-xl tracking-widest">
+              <p
+                className="
+            text-red-400
+            mt-4
+
+            text-sm
+            lg:text-xl
+
+            tracking-widest
+          "
+              >
                 {selecionado.cargo || selecionado.tipo}
               </p>
 
-              <div className="w-full h-[1px] bg-red-900 my-8" />
+              <div className="w-full h-[1px] bg-red-900 my-6 lg:my-8" />
 
-              <div className="space-y-8">
+              <div className="space-y-6 lg:space-y-8">
 
                 <div>
-                  <p className="text-red-500 tracking-[0.3em] text-sm mb-3">
+
+                  <p
+                    className="
+                text-red-500
+                tracking-[0.3em]
+
+                text-xs
+                lg:text-sm
+
+                mb-3
+              "
+                  >
                     RESPONSABILIDADE
                   </p>
 
-                  <p className="text-zinc-300 leading-8 text-lg">
+                  <p
+                    className="
+                text-zinc-300
+
+                leading-7
+                lg:leading-8
+
+                text-sm
+                lg:text-lg
+              "
+                  >
                     {selecionado.descricao}
                   </p>
+
                 </div>
 
                 {selecionado.importancia && (
                   <div>
-                    <p className="text-red-500 tracking-[0.3em] text-sm mb-3">
+
+                    <p
+                      className="
+                  text-red-500
+                  tracking-[0.3em]
+
+                  text-xs
+                  lg:text-sm
+
+                  mb-3
+                "
+                    >
                       IMPORTÂNCIA NA HISTÓRIA
                     </p>
 
-                    <p className="text-zinc-400 leading-8">
+                    <p
+                      className="
+                  text-zinc-400
+
+                  leading-7
+                  lg:leading-8
+
+                  text-sm
+                  lg:text-base
+                "
+                    >
                       {selecionado.importancia}
                     </p>
+
                   </div>
                 )}
 
               </div>
 
               <button
-                onClick={() => setSelecionado(null)}
+                onClick={() => {
+                  playClick()
+                  setSelecionado(null)
+                }}
                 className="
-                  mt-10
-                  cursor-pointer
-                  border border-red-700
-                  px-6 py-4
-                  text-red-400
-                  hover:bg-red-900/20
-                  hover:border-red-500
-                  transition
-                  tracking-[0.3em]
-                "
+            mt-8
+            lg:mt-10
+
+            cursor-pointer
+
+            border border-red-700
+
+            px-5 py-3
+            lg:px-6 lg:py-4
+
+            text-red-400
+
+            text-xs
+            lg:text-sm
+
+            hover:bg-red-900/20
+            hover:border-red-500
+
+            transition
+
+            tracking-[0.3em]
+          "
               >
                 FECHAR DOSSIÊ
               </button>
@@ -273,7 +434,8 @@ export default function Organizacao() {
     z-10
     px-6
     lg:px-12
-    pt-40
+    pt-23
+    lg:pt-40
     pb-10
     h-screen
     overflow-y-auto
@@ -283,7 +445,7 @@ export default function Organizacao() {
 
         <div className="mb-14">
 
-          <h1 className="text-5xl font-bold tracking-widest">
+          <h1 className=" text-4xl lg:text-5xl font-bold tracking-widest">
             ORGANIZAÇÃO
           </h1>
 
@@ -305,7 +467,7 @@ export default function Organizacao() {
             border border-red-900/70
             bg-black/50
             backdrop-blur-md
-            p-8
+            p-5 lg:p-8
             shadow-[0_0_40px_rgba(255,0,0,0.15)]
           "
         >
@@ -333,7 +495,7 @@ export default function Organizacao() {
 
             </div>
 
-            <section className="mt-24 w-full">
+            <section className="mt-14 lg:mt-24 w-full">
 
               <div className="flex items-center gap-6 mb-8">
                 <div className="h-[1px] bg-red-900 flex-1" />
@@ -350,7 +512,10 @@ export default function Organizacao() {
                 {fundadores.map((item) => (
                   <div
                     key={item.nome}
-                    onClick={() => setSelecionado(item)}
+                    onClick={() => {
+                      playClick()
+                      setSelecionado(item)
+                    }}
                     className="
                       group
                       border border-red-900
@@ -370,7 +535,8 @@ export default function Organizacao() {
                         src={item.imagem}
                         className="
                           w-full
-                          h-[320px]
+                          h-[150px]
+                          lg:h-[320px]
                           object-cover
                           group-hover:scale-105
                           transition duration-500
@@ -378,13 +544,13 @@ export default function Organizacao() {
                       />
                     </div>
 
-                    <div className="p-5">
+                    <div className="p-3 lg:p-5">
 
                       <h4 className="text-2xl font-semibold">
                         {item.nome}
                       </h4>
 
-                      <p className="text-red-500 mt-3 tracking-wider">
+                      <p className="text-red-500 mt-1 lg:mt-3 tracking-wider">
                         {item.cargo}
                       </p>
 
@@ -397,7 +563,7 @@ export default function Organizacao() {
 
             </section>
 
-            <section className="mt-24 w-full">
+            <section className="mt-16 lg:mt-24 w-full">
 
               <div className="flex items-center gap-6 mb-8">
                 <div className="h-[1px] bg-red-900 flex-1" />
@@ -414,7 +580,10 @@ export default function Organizacao() {
                 {executivos.map((item) => (
                   <div
                     key={item.nome}
-                    onClick={() => setSelecionado(item)}
+                    onClick={() => {
+                      playClick()
+                      setSelecionado(item)
+                    }}
                     className="
                       group
                       border border-red-900
@@ -434,7 +603,8 @@ export default function Organizacao() {
                         src={item.imagem}
                         className="
                           w-full
-                          h-[320px]
+                          h-[150px]
+                          lg:h-[320px]
                           object-cover
                           group-hover:scale-105
                           transition duration-500
@@ -442,13 +612,13 @@ export default function Organizacao() {
                       />
                     </div>
 
-                    <div className="p-5">
+                    <div className="p-3 lg:p-5">
 
                       <h4 className="text-2xl font-semibold">
                         {item.nome}
                       </h4>
 
-                      <p className="text-red-500 mt-3 tracking-wider">
+                      <p className="text-red-500 mt-1 lg:mt-3 tracking-wider">
                         {item.cargo}
                       </p>
 
@@ -461,7 +631,7 @@ export default function Organizacao() {
 
             </section>
 
-            <section className="mt-24 w-full">
+            <section className="mt-14 lg:mt-24 w-full">
 
               <div className="flex items-center gap-6 mb-8">
                 <div className="h-[1px] bg-red-900 flex-1" />
@@ -478,12 +648,15 @@ export default function Organizacao() {
                 {parceiras.map((item) => (
                   <div
                     key={item.nome}
-                    onClick={() => setSelecionado(item)}
+                    onClick={() => {
+                      playClick()
+                      setSelecionado(item)
+                    }}
                     className="
                       group
                       border border-red-900
                       bg-black/70
-                      p-8
+                      p-2 lg:p-8
                       flex flex-col items-center
                       justify-center
                       text-center
@@ -499,10 +672,11 @@ export default function Organizacao() {
                     <img
                       src={item.logo}
                       className="
-                        w-24
-                        h-24
+                        w-20 h-20
+                        lg:w-24
+                        lg:h-24
                         object-contain
-                        mb-6
+                        mb-4 lg:mb-6
                         group-hover:scale-110
                         transition
                       "
